@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float tiltAmount = 15f; // Max tilt angle
     public float tiltSpeed = 5f; // Smooth tilt speed
     public Transform spriteTransform; // Sprite transform
+    public SpriteRenderer spriteRenderer;
     public ParticleSystem playerParticleSystem; // Jetpack particle system
 
     private Rigidbody2D rb;
@@ -20,13 +21,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Update() {
         if(Grounded) {
-            if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) rb.AddForceY(flyImpulse, ForceMode2D.Impulse);
+            if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) rb.AddForce(Vector2.up * flyImpulse, ForceMode2D.Impulse);
         }
-        
     }
 
     void FixedUpdate()
@@ -48,20 +49,19 @@ public class PlayerController : MonoBehaviour
         playerParticleSystem.Stop();
 
         float moveInput = Input.GetAxis("Horizontal"); // A/D or Left/Right Arrow
+        CorrectSprite(moveInput);
 
         // Apply horizontal movement
         rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y);
 
         // Correct speed if needed
         CorrectVelocity();
-
-        // if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) rb.AddForceY(flyImpulse, ForceMode2D.Impulse); //! Detecção de input no fixed update não rola
     }
 
     private void JetpackMovement(){
-        // Get input
         float moveInput = Input.GetAxis("Horizontal"); // A/D or Left/Right Arrow
         bool isThrusting = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
+        CorrectSprite(moveInput);
 
         // Apply horizontal movement
         rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y);
@@ -108,6 +108,14 @@ public class PlayerController : MonoBehaviour
         }   
     }
 
+    private void CorrectSprite(float inputDir){
+        if (inputDir > 0)
+        {
+            spriteTransform.localScale = new Vector3(-Mathf.Abs(spriteTransform.localScale.x), spriteTransform.localScale.y, spriteTransform.localScale.z);
+        }
+        else if (inputDir < 0)
+        {
+            spriteTransform.localScale = new Vector3(Mathf.Abs(spriteTransform.localScale.x), spriteTransform.localScale.y, spriteTransform.localScale.z);
+        }
+    }
 }
-
-
