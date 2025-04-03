@@ -1,6 +1,7 @@
 using System.IO.Compression;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f; // Horizontal movement speed
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public Transform spriteTransform; // Sprite transform
     public SpriteRenderer spriteRenderer;
     public ParticleSystem playerParticleSystem; // Jetpack particle system
+
 
     private Rigidbody2D rb;
     private bool isThrustingLastFrame = false; // Track thrust state
@@ -24,15 +26,17 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    private void Update() {
-        if(Grounded) {
-            if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) rb.AddForce(Vector2.up * flyImpulse, ForceMode2D.Impulse);
+    private void Update()
+    {
+        if (Grounded)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) rb.AddForce(Vector2.up * flyImpulse, ForceMode2D.Impulse);
         }
     }
 
     void FixedUpdate()
     {
-        if(Grounded) GroundMovement();
+        if (Grounded) GroundMovement();
         else JetpackMovement();
     }
 
@@ -44,9 +48,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void GroundMovement(){
-        spriteTransform.rotation = Quaternion.Lerp(spriteTransform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * tiltSpeed * 2);    
+    private void GroundMovement()
+    {
+        spriteTransform.rotation = Quaternion.Lerp(spriteTransform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * tiltSpeed * 2);
         playerParticleSystem.Stop();
+
 
         float moveInput = Input.GetAxis("Horizontal"); // A/D or Left/Right Arrow
         CorrectSprite(moveInput);
@@ -58,7 +64,8 @@ public class PlayerController : MonoBehaviour
         CorrectVelocity();
     }
 
-    private void JetpackMovement(){
+    private void JetpackMovement()
+    {
         float moveInput = Input.GetAxis("Horizontal"); // A/D or Left/Right Arrow
         bool isThrusting = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
         CorrectSprite(moveInput);
@@ -73,6 +80,7 @@ public class PlayerController : MonoBehaviour
             if (!isThrustingLastFrame) // Play only if not already playing
             {
                 playerParticleSystem.Play();
+
             }
         }
         else
@@ -80,6 +88,7 @@ public class PlayerController : MonoBehaviour
             if (isThrustingLastFrame) // Stop only if previously thrusting
             {
                 playerParticleSystem.Stop();
+
             }
         }
 
@@ -89,7 +98,7 @@ public class PlayerController : MonoBehaviour
         CorrectVelocity();
 
         // Smooth tilt effect based on X velocity
-        float targetRotation = -rb.linearVelocity.x * tiltAmount / speed; 
+        float targetRotation = -rb.linearVelocity.x * tiltAmount / speed;
         spriteTransform.rotation = Quaternion.Lerp(spriteTransform.rotation, Quaternion.Euler(0, 0, targetRotation), Time.deltaTime * tiltSpeed);
     }
 
@@ -101,21 +110,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D other) {
+    private void OnCollisionExit2D(Collision2D other)
+    {
         if (other.gameObject.CompareTag("Ground"))
         {
             Grounded = false;
-        }   
+        }
     }
 
-    private void CorrectSprite(float inputDir){
-        if (inputDir > 0)
+    private void CorrectSprite(float inputDir)
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (mousePosition.x > transform.position.x)
         {
             spriteTransform.localScale = new Vector3(-Mathf.Abs(spriteTransform.localScale.x), spriteTransform.localScale.y, spriteTransform.localScale.z);
         }
-        else if (inputDir < 0)
+        else
         {
             spriteTransform.localScale = new Vector3(Mathf.Abs(spriteTransform.localScale.x), spriteTransform.localScale.y, spriteTransform.localScale.z);
         }
     }
 }
+
