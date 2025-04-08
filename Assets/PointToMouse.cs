@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PointToMouse : MonoBehaviour
 {
+
+
+
     void Update()
     {
         PointToMousePosition();
@@ -9,6 +12,8 @@ public class PointToMouse : MonoBehaviour
 
     private void PointToMousePosition()
     {
+
+        // should depend on player transform direction
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = transform.position.z; // Mantém a posição Z
 

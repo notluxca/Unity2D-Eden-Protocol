@@ -1,7 +1,6 @@
 using System.IO.Compression;
 using UnityEngine;
 
-
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f; // Horizontal movement speed
