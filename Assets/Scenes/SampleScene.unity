@@ -148,7 +148,8 @@ Transform:
   m_LocalPosition: {x: -8.3, y: -2.1, z: -0}
   m_LocalScale: {x: -158.07774, y: -158.07774, z: -158.07776}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1332071775}
   m_Father: {fileID: 629839372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 197.463}
 --- !u!212 &111903879
@@ -437,7 +438,6 @@ GameObject:
   m_Component:
   - component: {fileID: 629839372}
   - component: {fileID: 629839374}
-  - component: {fileID: 629839373}
   m_Layer: 0
   m_Name: GunHandler
   m_TagString: Untagged
@@ -461,18 +461,6 @@ Transform:
   - {fileID: 111903878}
   m_Father: {fileID: 1456325795}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.196}
---- !u!114 &629839373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 629839371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99700657ed4fe94bbda393ff737be05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &629839374
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -833,7 +821,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984417672}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -967,7 +955,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097043766}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1026,7 +1014,7 @@ GameObject:
   - component: {fileID: 1116170841}
   - component: {fileID: 1116170840}
   - component: {fileID: 1116170842}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SpritesheetJetpac_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1097,9 +1085,9 @@ Transform:
   m_GameObject: {fileID: 1116170839}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.07, y: -0.11, z: 0}
-  m_LocalScale: {x: 3.0726805, y: 3.0726805, z: 3.0726805}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.04, y: -0.11, z: 0}
+  m_LocalScale: {x: 3.0727, y: 3.0726998, z: 3.0726998}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1182,6 +1170,37 @@ Transform:
   - {fileID: 1405611488}
   - {fileID: 1097043767}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1332071774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1332071775}
+  m_Layer: 0
+  m_Name: GunFirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1332071775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332071774}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0672, y: -0.0023, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 111903878}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1405611487
 GameObject:
@@ -1269,7 +1288,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1405611487}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1605,7 +1624,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4efdb16215b8e75489c5311c4afe10e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1642,8 +1661,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1615753263}
   - component: {fileID: 1615753262}
+  - component: {fileID: 1615753264}
   - component: {fileID: 1615753260}
   - component: {fileID: 1615753259}
+  - component: {fileID: 1615753265}
+  - component: {fileID: 1615753266}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1761,6 +1783,51 @@ Transform:
   - {fileID: 1456325795}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1615753264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615753258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2969d88c999582a49a510a3272405df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArmAnchorPoint: {fileID: 629839372}
+  spriteTransform: {fileID: 1456325795}
+  spriteOrientation: -1
+--- !u!114 &1615753265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615753258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d2dd933e6740b74c823c67e67848a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireRate: 0
+  bulletSpeed: 0
+  gunFirePoint: {fileID: 1332071775}
+  bulletPrefab: {fileID: 4013643530971753591, guid: 210ac1f56c793b040b16cc0341ef2c9c, type: 3}
+--- !u!114 &1615753266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615753258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6cb0a6a36e8b54abfc512e7af658e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 4013643530971753591, guid: 210ac1f56c793b040b16cc0341ef2c9c, type: 3}
+  initialPoolSize: 20
 --- !u!1 &1751592475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1823,7 +1890,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_Sprite: {fileID: -7443756053782179069, guid: b108f8c392c8d394bb6c624605948636, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

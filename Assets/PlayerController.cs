@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float tiltAmount = 15f; // Max tilt angle
     public float tiltSpeed = 5f; // Smooth tilt speed
     public Transform spriteTransform; // Sprite transform
+    public Transform gunFirePoint; // Gun fire point
     public SpriteRenderer spriteRenderer;
     public ParticleSystem playerParticleSystem; // Jetpack particle system
 
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isThrustingLastFrame = false; // Track thrust state
     public float MaxSpeed = 10f;
+
 
     private bool Grounded;
 
