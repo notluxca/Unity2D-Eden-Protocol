@@ -13,7 +13,15 @@ public class Projectile : MonoBehaviour
     {
         currentDir = direction;
         active = true;
+        Invoke("DestroySelf", 5f);
+    }
 
+    void DestroySelf()
+    {
+        if (active)
+        {
+            ProjectilePool.Instance.ReturnToPool(this.gameObject);
+        }
     }
 
 
@@ -29,19 +37,21 @@ public class Projectile : MonoBehaviour
 
     private void MoveToDirection()
     {
-        Debug.Log(currentDir);
+        // Debug.Log(currentDir);
         transform.Translate(currentDir * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == layerMask)
+        Debug.Log("other: " + other.gameObject.name);
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            Destroy(other.gameObject); // provisorio
-            Destroy(gameObject); // provisorio
-
+            Debug.Log("hit");
+            Destroy(other.gameObject);
+            ProjectilePool.Instance.ReturnToPool(this.gameObject);
         }
     }
+
 
 
 
