@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-
+    public float ProjectileDamage = 1; // 1 default
     public float speed = 2f;
     public bool active = false;
     private Vector3 currentDir;
     public LayerMask layerMask = 8;
+
 
 
     public void Init(Vector3 direction)
@@ -43,11 +44,11 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("other: " + other.gameObject.name);
+        // Debug.Log("other: " + other.gameObject.name);
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("hit");
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<IDamageable>().Damage(1);
+            // Destroy(other.gameObject);
             ProjectilePool.Instance.ReturnToPool(this.gameObject);
         }
     }

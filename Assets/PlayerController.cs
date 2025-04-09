@@ -1,8 +1,9 @@
 using System.IO.Compression;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
+    public float life = 6f;
     public float speed = 5f; // Horizontal movement speed
     public float thrust = 10f; // Jetpack thrust force
     public float flyImpulse = 10f; // Jetpack initial Thrust to get off ground
@@ -129,6 +130,15 @@ public class PlayerController : MonoBehaviour
         else
         {
             spriteTransform.localScale = new Vector3(Mathf.Abs(spriteTransform.localScale.x), spriteTransform.localScale.y, spriteTransform.localScale.z);
+        }
+    }
+
+    public void Damage(float damage)
+    {
+        life -= damage;
+        if (life <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
