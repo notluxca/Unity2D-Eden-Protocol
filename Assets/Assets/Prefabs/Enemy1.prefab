@@ -100,16 +100,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7160770724474076503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97aabb9d921e5cf40aa72c193f820c18, type: 3}
+  m_Script: {fileID: 11500000, guid: 9069c62fa25abec4199441b7ec5ae46b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 1.2
-  variationAmount: 2
-  variationSpeed: 8
-  life: 1
+  speed: 1
+  variationAmount: 1
+  variationSpeed: 5
+  life: 2
   AttackDamage: 1
-  spriteRenderer: {fileID: 2846738995594888746}
 --- !u!50 &5681414225999831300
 Rigidbody2D:
   serializedVersion: 5
@@ -182,6 +181,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7160770724474076503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 621051f86712e3b48a0dfec4e7557292, type: 3}
+  m_Script: {fileID: 11500000, guid: 5604061485cf5234bb59fc57e6ea463f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

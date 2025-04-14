@@ -6,14 +6,21 @@ public class Projectile : MonoBehaviour
     public float speed = 2f;
     public bool active = false;
     private Vector3 currentDir;
+    private TrailRenderer trailRenderer;
     public LayerMask layerMask = 8;
 
+
+    private void Awake()
+    {
+        trailRenderer = GetComponent<TrailRenderer>();
+    }
 
 
     public void Init(Vector3 direction)
     {
         currentDir = direction;
         active = true;
+        trailRenderer.Clear();
         Invoke("DestroySelf", 5f);
     }
 

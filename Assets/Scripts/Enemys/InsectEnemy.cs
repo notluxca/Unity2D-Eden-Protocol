@@ -9,7 +9,7 @@ public class InsectEnemy : MonoBehaviour, IDamageable
     public float life = 1; // 1 default
     public float AttackDamage = 1;
 
-    public SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
     private Vector2 baseDirection;
 
@@ -18,6 +18,7 @@ public class InsectEnemy : MonoBehaviour, IDamageable
     private void Start()
     {
         target = GameObject.FindWithTag("Player").transform;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()

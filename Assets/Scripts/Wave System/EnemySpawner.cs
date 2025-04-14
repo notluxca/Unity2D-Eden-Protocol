@@ -22,11 +22,13 @@ public class EnemySpawner : MonoBehaviour
 
     void OnEnable()
     {
+        DayCycleSystem.OnNightStart += StartNextWave;
         DayCycleSystem.OnNightEnd += StopCurrentWave;
     }
 
     void OnDisable()
     {
+        DayCycleSystem.OnNightStart -= StartNextWave;
         DayCycleSystem.OnNightEnd -= StopCurrentWave;
     }
 
@@ -39,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
         currentWaveIndex++;
-        Debug.Log($"Começando wave {currentWaveIndex}");
+        Debug.Log($"🌙 Começando wave {currentWaveIndex} com início da noite!");
         waveInProgress = true;
         onWaveStart?.Invoke();
         currentWaveCoroutine = StartCoroutine(SpawnWaveRoutine());
@@ -47,8 +49,8 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnWaveRoutine()
     {
-        int enemyCount = 5 + currentWaveIndex * 2; // Escala de dificuldade
-        float spawnDelay = Mathf.Max(0.2f, 1.5f - currentWaveIndex * 0.1f); // Diminui o delay com waves
+        int enemyCount = 5 + currentWaveIndex * 2;
+        float spawnDelay = Mathf.Max(0.2f, 1.5f - currentWaveIndex * 0.1f);
 
         for (int i = 0; i < enemyCount; i++)
         {
@@ -56,20 +58,29 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnDelay);
         }
 
-        // Espera todos morrerem para considerar fim da wave
         yield return new WaitUntil(() => aliveEnemies.Count == 0);
 
         waveInProgress = false;
         onWaveEnd?.Invoke();
-        Debug.Log($"Wave {currentWaveIndex} finalizada.");
+        Debug.Log($"✅ Wave {currentWaveIndex} finalizada.");
     }
 
     void StopCurrentWave()
     {
-        Debug.Log("Fim da noite, parando wave atual.");
+        Debug.Log("☀️ Fim da noite: parando wave atual.");
         if (currentWaveCoroutine != null)
             StopCoroutine(currentWaveCoroutine);
 
+        currentWaveCoroutine = null;
+
+        // Limpa inimigos vivos ainda (opcional)
+        foreach (var enemy in aliveEnemies)
+        {
+            // if (enemy != null)
+            //     Destroy(enemy);
+        }
+
+        aliveEnemies.Clear();
         waveInProgress = false;
         onWaveEnd?.Invoke();
     }
@@ -89,7 +100,6 @@ public class EnemySpawner : MonoBehaviour
 
     EnemyData GetRandomEnemyForCurrentWave()
     {
-        // Libera mais tipos de inimigos conforme avança nas waves
         int maxIndex = Mathf.Min(possibleEnemies.Length, 1 + currentWaveIndex / 3);
         var enemyPool = new List<EnemyData>();
 

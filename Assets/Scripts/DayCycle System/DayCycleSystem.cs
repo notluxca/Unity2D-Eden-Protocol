@@ -24,6 +24,25 @@ public class DayCycleSystem : MonoBehaviour
         isInDay = true;
     }
 
+    void OnEnable()
+    {
+        EnemySpawner.onWaveEnd += EndNightManually;
+    }
+
+    void OnDisable()
+    {
+        EnemySpawner.onWaveEnd -= EndNightManually;
+    }
+
+    public void EndNightManually()
+    {
+        if (!isNight) return;
+
+        isNight = false;
+        OnNightEnd?.Invoke();
+        PlayDayIntro();
+    }
+
     [ContextMenu("Play Example Night")]
     public void PlayExampleNight()
     {
