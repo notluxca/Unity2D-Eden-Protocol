@@ -36,6 +36,6 @@ public class InGameDebugText : MonoBehaviour
         GUI.Label(new Rect(10, 10, 300, 20), $"O2 Level: {o2Level.ToString()}");
         GUI.Label(new Rect(10, 25, 300, 20), $"Jetpack Thrust Level: {JetPackThrust.ToString()}");
         GUI.Label(new Rect(10, 40, 300, 20), $"Player Life: {playerController.life.ToString()}");
-        GUI.Label(new Rect(10, 55, 300, 20), $"CurrentWave: {enemySpawner.currentWaveName}");
+        // GUI.Label(new Rect(10, 55, 300, 20), $"CurrentWave: {enemySpawner.currentWaveName}");
     }
 }

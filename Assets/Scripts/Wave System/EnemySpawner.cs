@@ -1,53 +1,85 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("Waves")]
-    public Wave[] waves;
+    [Header("Enemy Pool")]
     public EnemyData[] possibleEnemies;
 
-    [Header("Spawn")]
+    [Header("Spawn Points")]
     public Transform[] spawnPoints;
 
     private int currentWaveIndex = 0;
-    private List<GameObject> aliveEnemies = new List<GameObject>();
-    public string currentWaveName { get { return waves[currentWaveIndex].waveName; } }
+    private bool waveInProgress = false;
 
-    void Start()
+    private List<GameObject> aliveEnemies = new List<GameObject>();
+
+    public static Action onWaveStart, onWaveEnd;
+
+    private Coroutine currentWaveCoroutine;
+
+    void OnEnable()
     {
-        StartCoroutine(SpawnWaves());
+        DayCycleSystem.OnNightEnd += StopCurrentWave;
     }
 
-    IEnumerator SpawnWaves()
+    void OnDisable()
     {
-        while (currentWaveIndex < waves.Length)
+        DayCycleSystem.OnNightEnd -= StopCurrentWave;
+    }
+
+    public void StartNextWave()
+    {
+        if (waveInProgress)
         {
-            Wave wave = waves[currentWaveIndex];
-            Debug.Log($"Iniciando Wave {currentWaveIndex + 1}: {wave.enemyCount} inimigos");
-
-            for (int i = 0; i < wave.enemyCount; i++)
-            {
-                SpawnEnemy();
-                yield return new WaitForSeconds(wave.spawnDelay);
-            }
-
-            // Esperar todos os inimigos morrerem antes da próxima wave
-            yield return new WaitUntil(() => aliveEnemies.Count == 0);
-
-            currentWaveIndex++;
+            Debug.LogWarning("Wave já em andamento!");
+            return;
         }
 
-        Debug.Log("Todas as waves finalizadas!");
+        currentWaveIndex++;
+        Debug.Log($"Começando wave {currentWaveIndex}");
+        waveInProgress = true;
+        onWaveStart?.Invoke();
+        currentWaveCoroutine = StartCoroutine(SpawnWaveRoutine());
     }
 
-    void SpawnEnemy()
+    IEnumerator SpawnWaveRoutine()
     {
-        EnemyData enemyData = GetRandomEnemy();
+        int enemyCount = 5 + currentWaveIndex * 2; // Escala de dificuldade
+        float spawnDelay = Mathf.Max(0.2f, 1.5f - currentWaveIndex * 0.1f); // Diminui o delay com waves
+
+        for (int i = 0; i < enemyCount; i++)
+        {
+            SpawnEnemyBasedOnWave();
+            yield return new WaitForSeconds(spawnDelay);
+        }
+
+        // Espera todos morrerem para considerar fim da wave
+        yield return new WaitUntil(() => aliveEnemies.Count == 0);
+
+        waveInProgress = false;
+        onWaveEnd?.Invoke();
+        Debug.Log($"Wave {currentWaveIndex} finalizada.");
+    }
+
+    void StopCurrentWave()
+    {
+        Debug.Log("Fim da noite, parando wave atual.");
+        if (currentWaveCoroutine != null)
+            StopCoroutine(currentWaveCoroutine);
+
+        waveInProgress = false;
+        onWaveEnd?.Invoke();
+    }
+
+    void SpawnEnemyBasedOnWave()
+    {
+        EnemyData enemyData = GetRandomEnemyForCurrentWave();
         if (enemyData == null) return;
 
-        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
         GameObject enemy = Instantiate(enemyData.enemyPrefab, spawnPoint.position, Quaternion.identity);
         aliveEnemies.Add(enemy);
 
@@ -55,15 +87,24 @@ public class EnemySpawner : MonoBehaviour
         handler.OnDeath += () => aliveEnemies.Remove(enemy);
     }
 
-    EnemyData GetRandomEnemy()
+    EnemyData GetRandomEnemyForCurrentWave()
     {
-        float totalChance = 0f;
-        foreach (var e in possibleEnemies) totalChance += e.spawnChance;
+        // Libera mais tipos de inimigos conforme avança nas waves
+        int maxIndex = Mathf.Min(possibleEnemies.Length, 1 + currentWaveIndex / 3);
+        var enemyPool = new List<EnemyData>();
 
-        float rand = Random.Range(0f, totalChance);
+        for (int i = 0; i < maxIndex; i++)
+        {
+            enemyPool.Add(possibleEnemies[i]);
+        }
+
+        float totalChance = 0f;
+        foreach (var e in enemyPool) totalChance += e.spawnChance;
+
+        float rand = UnityEngine.Random.Range(0f, totalChance);
         float cumulative = 0f;
 
-        foreach (var e in possibleEnemies)
+        foreach (var e in enemyPool)
         {
             cumulative += e.spawnChance;
             if (rand <= cumulative)
@@ -72,12 +113,4 @@ public class EnemySpawner : MonoBehaviour
 
         return null;
     }
-}
-
-[System.Serializable]
-public class Wave
-{
-    public string waveName;
-    public int enemyCount;
-    public float spawnDelay;
 }

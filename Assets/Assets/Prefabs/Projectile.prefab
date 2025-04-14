@@ -100,14 +100,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4013643530971753591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 666c1b814f4603a49b917ea4fba96de9, type: 3}
+  m_Script: {fileID: 11500000, guid: 342a7683c4442dc4ab6d2afaa74af8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 17
+  ProjectileDamage: 1
+  speed: 10
   active: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
 --- !u!96 &6075063374461957869
 TrailRenderer:
   serializedVersion: 3
