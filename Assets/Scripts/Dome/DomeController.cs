@@ -4,6 +4,8 @@ public class DomeController : MonoBehaviour
 {
     public float initialLife;
     public float currentLife;
+    public GameObject Player;
+    public UpgradePannel upgradeMenu;
 
 
     private bool shouldGenerateOxygen = true;
@@ -30,6 +32,14 @@ public class DomeController : MonoBehaviour
     {
         shouldGenerateOxygen = value;
     }
+
+    public void EnterDome()
+    {
+        Player.SetActive(false);
+        upgradeMenu.OpenUpgradePannel();
+    }
+
+
 
 
 }

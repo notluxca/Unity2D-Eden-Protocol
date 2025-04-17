@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+
+    private ParticleSystem particleSystem;
     public float ProjectileDamage = 1; // 1 default
     public float speed = 2f;
     public bool active = false;
@@ -13,6 +15,7 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         trailRenderer = GetComponent<TrailRenderer>();
+        particleSystem = GetComponentInChildren<ParticleSystem>();
     }
 
 
@@ -20,6 +23,7 @@ public class Projectile : MonoBehaviour
     {
         currentDir = direction;
         active = true;
+        particleSystem.Clear();
         trailRenderer.Clear();
         Invoke("DestroySelf", 5f);
     }
@@ -56,6 +60,12 @@ public class Projectile : MonoBehaviour
         {
             other.gameObject.GetComponent<IDamageable>().Damage(1);
             // Destroy(other.gameObject);
+            particleSystem.Play();
+            ProjectilePool.Instance.ReturnToPool(this.gameObject);
+        }
+        else
+        {
+            // particleSystem.Play(); 
             ProjectilePool.Instance.ReturnToPool(this.gameObject);
         }
     }

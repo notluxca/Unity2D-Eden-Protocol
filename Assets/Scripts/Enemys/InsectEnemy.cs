@@ -9,11 +9,13 @@ public class InsectEnemy : MonoBehaviour, IDamageable
     public float life = 1; // 1 default
     public float AttackDamage = 1;
 
+    public bool ShouldDropLoot = false;
+
     private SpriteRenderer spriteRenderer;
 
     private Vector2 baseDirection;
 
-    public float current_life => throw new System.NotImplementedException();
+    // public float current_life => throw new System.NotImplementedException();
 
     private void Start()
     {
@@ -69,6 +71,7 @@ public class InsectEnemy : MonoBehaviour, IDamageable
         life -= damage;
         if (life <= 0)
         {
+            if (ShouldDropLoot) Debug.Log("Droped loot");
             Destroy(gameObject);
         }
     }

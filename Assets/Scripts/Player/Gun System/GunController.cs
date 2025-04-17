@@ -9,11 +9,17 @@ public class GunController : MonoBehaviour
     public GameObject bulletPrefab;
     public ArmPointer armPointer;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip[] shootClips; // <- seus 3 sons de tiro
+    public float soundCooldown = 0.05f;
+
     private float fireCooldown = 0f;
+    private float lastShootSoundTime = -999f;
 
     void Update()
     {
-        // Atualiza o cooldown
+        // Atualiza o cooldown de tiro
         if (fireCooldown > 0)
             fireCooldown -= Time.deltaTime;
 
@@ -35,6 +41,13 @@ public class GunController : MonoBehaviour
         direction.Normalize();
 
         GameObject bullet = ProjectilePool.Instance.GetProjectile(gunFirePoint.position, direction);
-        // bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+
+        // Toca som com cooldown
+        if (Time.time - lastShootSoundTime > soundCooldown && shootClips.Length > 0)
+        {
+            AudioClip randomClip = shootClips[Random.Range(0, shootClips.Length)];
+            audioSource.PlayOneShot(randomClip);
+            lastShootSoundTime = Time.time;
+        }
     }
 }

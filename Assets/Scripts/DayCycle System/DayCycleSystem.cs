@@ -7,10 +7,13 @@ public class DayCycleSystem : MonoBehaviour
     public static event Action OnNightStart;
     public static event Action OnNightEnd;
 
+    public GameObject domeEnterTrigger;
+
+    [Header("Setup")]
+    [SerializeField] private float nightDuration = 10f;
+
     [Header("Animator")]
     [SerializeField] private Animator skyAnimator;
-
-    [Header("Animation Names")]
     [SerializeField] private string nightCycleName = "NightCycle";
     [SerializeField] private string dayIntroName = "DayIntro";
     [SerializeField] private string dayEndName = "DayEnd";
@@ -22,21 +25,23 @@ public class DayCycleSystem : MonoBehaviour
     {
         isNight = false;
         isInDay = true;
+        domeEnterTrigger.SetActive(false);
     }
 
     void OnEnable()
     {
-        EnemySpawner.onWaveEnd += EndNightManually;
+        WaveController.onWaveEnd += EndNightManually;
     }
 
     void OnDisable()
     {
-        EnemySpawner.onWaveEnd -= EndNightManually;
+        WaveController.onWaveEnd -= EndNightManually;
     }
 
     public void EndNightManually()
     {
-        if (!isNight) return;
+        // if (!isNight) return;
+        // Debug.Log("Fim da noite chamado");
 
         isNight = false;
         OnNightEnd?.Invoke();
@@ -46,11 +51,12 @@ public class DayCycleSystem : MonoBehaviour
     [ContextMenu("Play Example Night")]
     public void PlayExampleNight()
     {
-        PlayNight(10f);
+        PlayNight();
     }
 
-    public void PlayNight(float nightDuration)
+    public void PlayNight()
     {
+        domeEnterTrigger.SetActive(false);
         if (isNight)
         {
             Debug.LogWarning("A noite já está em andamento.");
@@ -80,8 +86,9 @@ public class DayCycleSystem : MonoBehaviour
         yield return new WaitForSeconds(duration);
         isNight = false;
 
+        // yield return new WaitUntil(() => isInDay);
         OnNightEnd?.Invoke();
-        PlayDayIntro();
+        // PlayDayIntro();
     }
 
     private void PlayDayIntro()
@@ -91,6 +98,7 @@ public class DayCycleSystem : MonoBehaviour
 
         isInDay = true;
         Debug.Log("Amanhecendo... Dia começou");
+        domeEnterTrigger.SetActive(true);
     }
 
     [ContextMenu("Proceed to Next Night")]
@@ -119,7 +127,7 @@ public class DayCycleSystem : MonoBehaviour
             yield return new WaitForSeconds(dayEndClip.length);
         }
 
-        PlayNight(nightDuration);
+        PlayNight();
     }
 
     private AnimationClip GetAnimationClipByName(string clipName)
@@ -131,4 +139,11 @@ public class DayCycleSystem : MonoBehaviour
         }
         return null;
     }
+
+
+    public float GetNightDuration()
+    {
+        return nightDuration;
+    }
+
 }

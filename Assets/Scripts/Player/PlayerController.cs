@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     public float MaxSpeed = 10f;
 
 
-    private bool Grounded;
+    public bool Grounded;
 
     void Start()
     {

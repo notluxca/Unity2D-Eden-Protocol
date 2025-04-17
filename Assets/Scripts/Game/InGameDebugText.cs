@@ -5,7 +5,7 @@ public class InGameDebugText : MonoBehaviour
     private bool ShowDebugText = true;
     private DomeController domeController;
     private PlayerController playerController;
-    private EnemySpawner enemySpawner;
+    private WaveController enemySpawner;
     private GunController gunController;
     private float o2Level;
     private float JetPackThrust;
@@ -15,7 +15,7 @@ public class InGameDebugText : MonoBehaviour
         domeController = FindAnyObjectByType<DomeController>();
         playerController = FindAnyObjectByType<PlayerController>();
         gunController = FindAnyObjectByType<GunController>();
-        enemySpawner = FindAnyObjectByType<EnemySpawner>();
+        enemySpawner = FindAnyObjectByType<WaveController>();
     }
 
     private void Update()
