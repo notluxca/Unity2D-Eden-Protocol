@@ -16,6 +16,7 @@ public class WaveController : MonoBehaviour
     public int WaveDropCount = 0;
 
     private int currentWaveIndex = -1;
+    public int currentWave => currentWaveIndex;
     private bool waveInProgress = false;
     private Coroutine currentWaveCoroutine;
 

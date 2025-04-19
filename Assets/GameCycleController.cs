@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 // se inscrever no evento do WaveController que diz se o ultimo inimigo da current wave for morto
@@ -20,6 +21,12 @@ public class GameCycleController : MonoBehaviour
     private void Start()
     {
         StartGame();
+        WaveController.onWaveStart += DisplayNewWaveText;
+    }
+
+    private void DisplayNewWaveText()
+    {
+        Debug.Log("Wave " + WaveController.currentWave + 1);
     }
 
     [ContextMenu("Start Game")]

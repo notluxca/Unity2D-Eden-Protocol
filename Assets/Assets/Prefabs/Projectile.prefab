@@ -109,7 +109,7 @@ MonoBehaviour:
   active: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 320
 --- !u!96 &6075063374461957869
 TrailRenderer:
   serializedVersion: 3

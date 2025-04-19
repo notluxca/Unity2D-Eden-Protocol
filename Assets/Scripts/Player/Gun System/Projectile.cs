@@ -55,19 +55,19 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Debug.Log("other: " + other.gameObject.name);
-        if (other.gameObject.CompareTag("Enemy"))
+        if (!active) return;
+
+        if ((layerMask.value & (1 << other.gameObject.layer)) == 0)
+            return;
+
+        IDamageable damageable = other.GetComponent<IDamageable>();
+        if (damageable != null)
         {
-            other.gameObject.GetComponent<IDamageable>().Damage(1);
-            // Destroy(other.gameObject);
-            particleSystem.Play();
-            ProjectilePool.Instance.ReturnToPool(this.gameObject);
+            damageable.Damage(ProjectileDamage);
         }
-        else
-        {
-            // particleSystem.Play(); 
-            ProjectilePool.Instance.ReturnToPool(this.gameObject);
-        }
+
+        particleSystem.Play();
+        ProjectilePool.Instance.ReturnToPool(this.gameObject);
     }
 
 

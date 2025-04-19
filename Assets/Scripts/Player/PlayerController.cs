@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void GroundMovement()
     {
-        spriteTransform.rotation = Quaternion.Lerp(spriteTransform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * tiltSpeed * 2);
+        // spriteTransform.rotation = Quaternion.Lerp(spriteTransform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * tiltSpeed * 2);
         playerParticleSystem.Stop();
 
 
@@ -101,13 +101,15 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         // Smooth tilt effect based on X velocity
         float targetRotation = -rb.linearVelocity.x * tiltAmount / speed;
-        spriteTransform.rotation = Quaternion.Lerp(spriteTransform.rotation, Quaternion.Euler(0, 0, targetRotation), Time.deltaTime * tiltSpeed);
+        if (!Grounded) spriteTransform.rotation = Quaternion.Lerp(spriteTransform.rotation, Quaternion.Euler(0, 0, targetRotation), Time.deltaTime * tiltSpeed);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        // Debug.Log(other.gameObject.tag);
         if (other.gameObject.CompareTag("Ground"))
         {
+            // Debug.Log("Collision detected");
             Grounded = true;
         }
     }

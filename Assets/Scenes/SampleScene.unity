@@ -832,7 +832,7 @@ GameObject:
   - component: {fileID: 350648849}
   m_Layer: 6
   m_Name: plataform1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2046,7 +2046,7 @@ GameObject:
   - component: {fileID: 1087762103}
   m_Layer: 6
   m_Name: plataform2
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2314,7 +2314,7 @@ GameObject:
   - component: {fileID: 1116170842}
   m_Layer: 6
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3247,7 +3247,7 @@ MonoBehaviour:
   life: 6
   speed: 2.6
   thrust: 15
-  flyImpulse: 10
+  flyImpulse: 1.8
   tiltAmount: 15
   tiltSpeed: 5
   spriteTransform: {fileID: 1456325795}
@@ -3334,7 +3334,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1615753268
 MonoBehaviour:
@@ -4084,7 +4084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1840047566}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Scenery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
