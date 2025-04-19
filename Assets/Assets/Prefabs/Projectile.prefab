@@ -110,6 +110,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 320
+  knockbackForce: 0.2
 --- !u!96 &6075063374461957869
 TrailRenderer:
   serializedVersion: 3
@@ -522,7 +523,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+      maxColor: {r: 0.5566038, g: 0.028880388, b: 0.028880388, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

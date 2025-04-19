@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
-    public void Damage(float damage)
+    public void Damage(float damage, Vector2 position, float knockbackForce)
     {
         life -= damage;
         if (life <= 0)

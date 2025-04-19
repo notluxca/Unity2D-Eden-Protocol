@@ -12,20 +12,33 @@ public class ProjectilePool : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
 
         for (int i = 0; i < initialPoolSize; i++)
         {
-            var obj = Instantiate(projectilePrefab);
-            obj.SetActive(false);
-            pool.Enqueue(obj);
+            CreateNewProjectile();
         }
+    }
+
+    private GameObject CreateNewProjectile()
+    {
+        GameObject obj = Instantiate(projectilePrefab);
+        obj.SetActive(false);
+        pool.Enqueue(obj);
+        return obj;
     }
 
     public GameObject GetProjectile(Vector2 position, Vector2 direction)
     {
-        GameObject obj = pool.Count > 0 ? pool.Dequeue() : Instantiate(projectilePrefab);
+        GameObject obj = pool.Count > 0 ? pool.Dequeue() : CreateNewProjectile();
         obj.transform.position = position;
+        obj.transform.rotation = Quaternion.identity;
         obj.SetActive(true);
 
         obj.GetComponent<Projectile>().Init(direction);
@@ -36,11 +49,5 @@ public class ProjectilePool : MonoBehaviour
     {
         obj.SetActive(false);
         pool.Enqueue(obj);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
