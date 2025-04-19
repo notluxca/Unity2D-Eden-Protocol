@@ -8,6 +8,7 @@ public class WaveDisplayText : MonoBehaviour
     private WaveController waveController;
     private TextMeshProUGUI text;
 
+    public float delayToShow = 2f;
     public float fadeDuration = 1f;
     public float displayTime = 2f;
 

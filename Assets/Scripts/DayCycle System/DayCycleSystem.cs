@@ -7,66 +7,74 @@ public class DayCycleSystem : MonoBehaviour
     public static event Action OnNightStart;
     public static event Action OnNightEnd;
 
-    public GameObject domeEnterTrigger;
-
     [Header("Setup")]
     [SerializeField] private float nightDuration = 10f;
 
     [Header("Animator")]
     [SerializeField] private Animator skyAnimator;
+    [SerializeField] private string dayCycle = "DayCycle";
     [SerializeField] private string nightCycleName = "NightCycle";
-    [SerializeField] private string dayIntroName = "DayIntro";
     [SerializeField] private string dayEndName = "DayEnd";
+    [SerializeField] private string dayIntroName = "DayIntro";
+
+    [SerializeField] private GameObject domeEnterTrigger;
 
     private bool isNight = false;
     private bool isInDay = false;
 
-    void Start()
+    public bool IsNight => isNight;
+    public bool IsDay => isInDay;
+
+    private void Start()
+    {
+        StartDay();
+    }
+
+    public void StartDay()
     {
         isNight = false;
         isInDay = true;
-        domeEnterTrigger.SetActive(false);
+
+        skyAnimator.speed = 1f;
+        skyAnimator.Play(dayCycle, 0, 0f);
+        domeEnterTrigger.SetActive(true);
+
+        Debug.Log("☀️ Dia começou");
     }
 
-    void OnEnable()
+    public void ProceedToNight()
     {
-        WaveController.onWaveEnd += EndNightManually;
-    }
-
-    void OnDisable()
-    {
-        WaveController.onWaveEnd -= EndNightManually;
-    }
-
-    public void EndNightManually()
-    {
-        // if (!isNight) return;
-        // Debug.Log("Fim da noite chamado");
-
-        isNight = false;
-        OnNightEnd?.Invoke();
-        PlayDayIntro();
-    }
-
-    [ContextMenu("Play Example Night")]
-    public void PlayExampleNight()
-    {
-        PlayNight();
-    }
-
-    public void PlayNight()
-    {
-        domeEnterTrigger.SetActive(false);
-        if (isNight)
+        if (!isInDay)
         {
-            Debug.LogWarning("A noite já está em andamento.");
+            Debug.LogWarning("⚠️ Já é noite.");
             return;
         }
 
+        StartCoroutine(TransitionToNight());
+    }
+
+    private IEnumerator TransitionToNight()
+    {
+        isInDay = false;
+        domeEnterTrigger.SetActive(false);
+        Debug.Log("🌇 Transição para noite...");
+
+        skyAnimator.speed = 1f;
+        skyAnimator.Play(dayEndName, 0, 0f);
+
+        AnimationClip endClip = GetAnimationClipByName(dayEndName);
+        if (endClip != null)
+            yield return new WaitForSeconds(endClip.length);
+
+        PlayNight();
+    }
+
+    private void PlayNight()
+    {
         AnimationClip nightClip = GetAnimationClipByName(nightCycleName);
         if (nightClip == null)
         {
-            Debug.LogError("Animação NightCycle não encontrada!");
+            Debug.LogError("❌ Animação NightCycle não encontrada!");
             return;
         }
 
@@ -75,59 +83,25 @@ public class DayCycleSystem : MonoBehaviour
         skyAnimator.Play(nightCycleName, 0, 0f);
 
         isNight = true;
-        isInDay = false;
+        Debug.Log("🌙 Noite começou");
 
         OnNightStart?.Invoke();
-        StartCoroutine(NightRoutine(nightDuration));
+        StartCoroutine(NightRoutine());
     }
 
-    private IEnumerator NightRoutine(float duration)
+    private IEnumerator NightRoutine()
     {
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(nightDuration);
+        EndNight();
+    }
+
+    private void EndNight()
+    {
+        if (!isNight) return;
+
         isNight = false;
-
-        // yield return new WaitUntil(() => isInDay);
+        Debug.Log("🌤️ Noite terminou");
         OnNightEnd?.Invoke();
-        // PlayDayIntro();
-    }
-
-    private void PlayDayIntro()
-    {
-        skyAnimator.speed = 1f;
-        skyAnimator.Play(dayIntroName, 0, 0f);
-
-        isInDay = true;
-        Debug.Log("Amanhecendo... Dia começou");
-        domeEnterTrigger.SetActive(true);
-    }
-
-    [ContextMenu("Proceed to Next Night")]
-    public void ProceedToNextNight() // float nextNightDuration
-    {
-        if (!isInDay)
-        {
-            Debug.LogWarning("Ainda não é dia para iniciar a próxima noite.");
-            return;
-        }
-
-        StartCoroutine(TransitionToNight(10f));
-    }
-
-    private IEnumerator TransitionToNight(float nightDuration)
-    {
-        isInDay = false;
-        Debug.Log("Encerrando o dia...");
-
-        skyAnimator.speed = 1f;
-        skyAnimator.Play(dayEndName, 0, 0f);
-
-        AnimationClip dayEndClip = GetAnimationClipByName(dayEndName);
-        if (dayEndClip != null)
-        {
-            yield return new WaitForSeconds(dayEndClip.length);
-        }
-
-        PlayNight();
     }
 
     private AnimationClip GetAnimationClipByName(string clipName)
@@ -140,10 +114,5 @@ public class DayCycleSystem : MonoBehaviour
         return null;
     }
 
-
-    public float GetNightDuration()
-    {
-        return nightDuration;
-    }
-
+    public float GetNightDuration() => nightDuration;
 }

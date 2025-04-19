@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         dayCycleSystem = FindFirstObjectByType<DayCycleSystem>();
-        dayCycleSystem.PlayExampleNight();
+        // dayCycleSystem.PlayExampleNight();
     }
 
     // Update is called once per frame

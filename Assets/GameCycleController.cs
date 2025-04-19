@@ -1,51 +1,78 @@
-using System;
 using UnityEngine;
 
-// se inscrever no evento do WaveController que diz se o ultimo inimigo da current wave for morto
-// liberar entrada no domo
-// após upgrade do domo, prosseguir para a proxima noite e tirar o player do domo.
 public class GameCycleController : MonoBehaviour
 {
-    [SerializeField] private WaveController WaveController;
-    [SerializeField] private DayCycleSystem DayCycleSystem;
+    [SerializeField] private WaveController waveController;
+    [SerializeField] private DayCycleSystem dayCycleSystem;
 
-    // wave end info
-    [SerializeField] private bool PlayerInDome;
-    [SerializeField] private bool AllEnemysDead;
-    [SerializeField] private bool NightOver;
-
-    public bool GetPlayerInDome() { return PlayerInDome; }
-    public bool GetAllEnemysDead() { return AllEnemysDead; }
-    public bool GetNightOver() { return NightOver; }
+    private bool playerInDome = false;
+    private bool allEnemiesDead = false;
+    private bool nightIsOver = false;
+    private UpgradePannel upgradePannel;
 
     private void Start()
     {
-        StartGame();
-        WaveController.onWaveStart += DisplayNewWaveText;
+        dayCycleSystem.StartDay(); // Começa de dia
+        upgradePannel = FindFirstObjectByType<UpgradePannel>();
+        SubscribeToEvents();
     }
 
-    private void DisplayNewWaveText()
+    private void SubscribeToEvents()
     {
-        Debug.Log("Wave " + WaveController.currentWave + 1);
+        WaveController.onWaveStart += () =>
+        {
+            Debug.Log("🔥 Wave " + waveController.currentWave + " iniciada.");
+        };
+
+        WaveController.onWaveEnd += () =>
+        {
+            allEnemiesDead = true;
+            CheckIfNightIsOver();
+        };
+
+        DayCycleSystem.OnNightEnd += () =>
+        {
+            nightIsOver = true;
+            CheckIfNightIsOver();
+        };
     }
 
-    [ContextMenu("Start Game")]
-    private void StartGame()
+    private void CheckIfNightIsOver()
     {
-        DayCycleSystem.PlayNight();
-        WaveController.StartNextWave();
+        if (allEnemiesDead && nightIsOver)
+        {
+            Debug.Log("✅ Noite encerrada e wave finalizada.");
+            dayCycleSystem.StartDay();
+            upgradePannel.OpenUpgradePannel();
+            playerInDome = false;
+        }
     }
 
-    // Should cycle the day to night at same time
+    [ContextMenu("Proceed To Next Wave")]
     public void ProceedToNextWave()
     {
-        if (!(GetAllEnemysDead() && GetNightOver())) return;
+        if (dayCycleSystem.IsNight)
+        {
+            Debug.LogWarning("⚠️ Ainda é noite. Aguarde ela terminar.");
+            return;
+        }
 
-        DayCycleSystem.ProceedToNextNight();
-        WaveController.StartNextWave();
+        if (!dayCycleSystem.IsDay)
+        {
+            Debug.LogWarning("⚠️ Ainda não é dia. Espere a transição.");
+            return;
+        }
+
+        Debug.Log("🚀 Iniciando próxima noite e wave");
+        allEnemiesDead = false;
+        nightIsOver = false;
+
+        dayCycleSystem.ProceedToNight();
+        waveController.StartNextWave();
     }
 
-
-
-
+    public void SetPlayerInDome(bool value)
+    {
+        playerInDome = value;
+    }
 }
