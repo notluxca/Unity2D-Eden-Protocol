@@ -23,6 +23,15 @@ public class UpgradePannel : MonoBehaviour
         UpgradePannelCanvas.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            UpgradeGunFireRate();
+            UpgradePlayerSpeed();
+        }
+    }
+
 
     [ContextMenu("Open Upgrade Pannel")]
     public void OpenUpgradePannel()
@@ -42,16 +51,17 @@ public class UpgradePannel : MonoBehaviour
 
     public void UpgradePlayerSpeed()
     {
-
+        playerController.thrust += 1f;
+        playerController.speed += 0.5f;
     }
 
     public void UpgradeDomeDurability()
     {
-
+        Debug.Log("Dome durability on");
     }
 
     public void UpgradeGunFireRate()
     {
-
+        gunController.FireRate += 1f;
     }
 }
