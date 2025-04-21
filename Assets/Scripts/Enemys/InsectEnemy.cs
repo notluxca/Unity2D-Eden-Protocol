@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class InsectEnemy : MonoBehaviour, IDamageable
@@ -19,29 +20,50 @@ public class InsectEnemy : MonoBehaviour, IDamageable
     private float knockbackTimer = 0f;
     private float knockbackDuration = 0.2f;
 
+    private Color originalColor;
+
     private void Start()
     {
-        target = GameObject.FindWithTag("Player").transform;
+        try
+        {
+            target = GameObject.FindWithTag("Player").transform;
+        }
+        catch (System.Exception)
+        {
+            target = GameObject.FindWithTag("Dome").transform;
+            throw;
+        }
+
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        originalColor = spriteRenderer.color;
+
+        PlayerController.OnPlayerDeath += OnPlayerDeath;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerController.OnPlayerDeath -= OnPlayerDeath;
+    }
+
+    private void OnPlayerDeath()
+    {
+        target = GameObject.FindWithTag("Dome").transform;
     }
 
     private void Update()
     {
         if (target == null) return;
 
-        // Se estiver em knockback, não se move
         if (knockbackTimer > 0)
         {
             knockbackTimer -= Time.deltaTime;
             return;
         }
 
-        // Direção base ao player
         Vector2 toTarget = (target.position - transform.position).normalized;
         baseDirection = toTarget;
 
-        // Variação tipo inseto
         float offsetX = Mathf.PerlinNoise(Time.time * variationSpeed, 0f) - 0.5f;
         float offsetY = Mathf.PerlinNoise(0f, Time.time * variationSpeed) - 0.5f;
         Vector2 randomOffset = new Vector2(offsetX, offsetY) * variationAmount;
@@ -50,7 +72,6 @@ public class InsectEnemy : MonoBehaviour, IDamageable
 
         rb.linearVelocity = finalDirection * speed;
 
-        // Flipar sprite com base na direção do player
         if (spriteRenderer != null)
         {
             spriteRenderer.flipX = target.position.x < transform.position.x;
@@ -61,11 +82,10 @@ public class InsectEnemy : MonoBehaviour, IDamageable
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            float knockbackForce = 2;
             var damageable = other.gameObject.GetComponent<IDamageable>();
             if (damageable != null)
             {
-                damageable.Damage(AttackDamage, transform.position, knockbackForce);
+                damageable.Damage(AttackDamage, transform.position, 5);
             }
         }
     }
@@ -74,15 +94,16 @@ public class InsectEnemy : MonoBehaviour, IDamageable
     {
         life -= damage;
 
+        StartCoroutine(FlashRed()); // <- Chama o efeito de flash
+
         Vector2 knockbackDirection = (Vector2)transform.position - position;
         knockbackDirection.Normalize();
 
         if (rb != null)
         {
-            Debug.Log("Knockback applied");
-            rb.linearVelocity = Vector2.zero; // Zera antes do knockback
+            rb.linearVelocity = Vector2.zero;
             rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
-            knockbackTimer = knockbackDuration; // Pausa o movimento normal
+            knockbackTimer = knockbackDuration;
         }
 
         if (life <= 0)
@@ -90,14 +111,22 @@ public class InsectEnemy : MonoBehaviour, IDamageable
             if (ShouldDropLoot)
             {
                 Debug.Log("Dropped loot");
-                // Instantiate(lootPrefab, transform.position, Quaternion.identity); // opcional
+                // Instantiate(lootPrefab, transform.position, Quaternion.identity);
             }
 
             Destroy(gameObject);
         }
     }
 
-    // (Opcional) Rotacionar corpo pra direção de movimento
+    private System.Collections.IEnumerator FlashRed()
+    {
+        if (spriteRenderer == null) yield break;
+
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.color = originalColor;
+    }
+
     private void RotateTowards(Vector2 direction)
     {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

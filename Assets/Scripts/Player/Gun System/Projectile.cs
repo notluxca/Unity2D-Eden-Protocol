@@ -12,6 +12,8 @@ public class Projectile : MonoBehaviour
     public LayerMask layerMask = 8;
     Collider2D collider2D;
     SpriteRenderer spriteRenderer;
+    AudioSource audioSource;
+    public AudioClip hitClip;
 
     public float knockbackForce;
 
@@ -23,6 +25,7 @@ public class Projectile : MonoBehaviour
         particleSystem = GetComponentInChildren<ParticleSystem>();
         collider2D = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Init(Vector3 direction)
@@ -76,7 +79,9 @@ public class Projectile : MonoBehaviour
             damageable.Damage(ProjectileDamage, transform.position, knockbackForce);
         }
 
+
         active = false;
+        audioSource.PlayOneShot(hitClip);
         collider2D.enabled = false;
         spriteRenderer.enabled = false;
         particleSystem.Play();

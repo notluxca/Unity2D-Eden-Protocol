@@ -1,0 +1,485 @@
+fileFormatVersion: 2
+guid: a93ba2dc3767741438016b6bba3ba310
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 844160659915317759
+    second: DamageLayer_0
+  - first:
+      213: 438770628056899339
+    second: DamageLayer_1
+  - first:
+      213: 3848189517400903988
+    second: DamageLayer_2
+  - first:
+      213: 8445950912409658675
+    second: DamageLayer_3
+  - first:
+      213: 5674965795363732034
+    second: DamageLayer_4
+  - first:
+      213: 1566520463481410473
+    second: DamageLayer_5
+  - first:
+      213: 8499751889260485145
+    second: DamageLayer_6
+  - first:
+      213: 8947235241773608111
+    second: DamageLayer_7
+  - first:
+      213: 1632095306063831473
+    second: DamageLayer_8
+  - first:
+      213: 6084106960019039391
+    second: DamageLayer_9
+  - first:
+      213: -7627677962649097747
+    second: DamageLayer_10
+  - first:
+      213: -6895077166697921388
+    second: DamageLayer_11
+  - first:
+      213: 2261142444528069408
+    second: DamageLayer_12
+  - first:
+      213: -5134467491185897095
+    second: DamageLayer_13
+  - first:
+      213: 2772630522779467934
+    second: DamageLayer_14
+  - first:
+      213: -6551380002937496409
+    second: DamageLayer_15
+  - first:
+      213: -3978754100614125682
+    second: DamageLayer_16
+  - first:
+      213: -5156029580898097968
+    second: DamageLayer_17
+  - first:
+      213: 7668969770573438000
+    second: DamageLayer_18
+  - first:
+      213: 9006907826083100119
+    second: DamageLayer_19
+  - first:
+      213: -2824237180543668989
+    second: DamageLayer_20
+  - first:
+      213: 4475358805090480389
+    second: DamageLayer_21
+  - first:
+      213: -7621547044968668328
+    second: DamageLayer_22
+  - first:
+      213: -2731349986683558916
+    second: DamageLayer_23
+  - first:
+      213: -435432680078243349
+    second: DamageLayer_24
+  - first:
+      213: -1233308680712904246
+    second: DamageLayer_25
+  - first:
+      213: -4766637172672692151
+    second: DamageLayer_26
+  - first:
+      213: 5782828867082242305
+    second: DamageLayer_27
+  - first:
+      213: 9218602618622341121
+    second: DamageLayer_28
+  - first:
+      213: -5242708173659270140
+    second: DamageLayer_29
+  - first:
+      213: 9106639119561008804
+    second: DamageLayer_30
+  - first:
+      213: 8024605855753691832
+    second: DamageLayer_31
+  - first:
+      213: 5757928726094648591
+    second: DamageLayer_32
+  - first:
+      213: -925548418374880507
+    second: DamageLayer_33
+  - first:
+      213: -1052418831575580763
+    second: DamageLayer_34
+  - first:
+      213: -6483881251622061997
+    second: DamageLayer_35
+  - first:
+      213: 2998434303024794971
+    second: DamageLayer_36
+  - first:
+      213: -8772995840537096513
+    second: DamageLayer_37
+  - first:
+      213: 1970809660872970140
+    second: DamageLayer_38
+  - first:
+      213: 7577663688973342228
+    second: DamageLayer_39
+  - first:
+      213: 3759851106627887496
+    second: DamageLayer_40
+  - first:
+      213: -1904176226317670940
+    second: DamageLayer_41
+  - first:
+      213: 6547980118630028044
+    second: DamageLayer_42
+  - first:
+      213: -5179943599766897039
+    second: DamageLayer_43
+  - first:
+      213: -4347324864157398843
+    second: DamageLayer_44
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DamageLayer_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 945
+        width: 143
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18baaed1cd9e5634795faca9c8d4af0a
+      internalID: 1480574094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DamageLayer_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 840
+        width: 143
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 786a5b770a3b0d54bb0c4d748c127643
+      internalID: -315680644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DamageLayer_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 735
+        width: 143
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55db0cfb44c5d7048b04e33c67499a5b
+      internalID: -247802525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DamageLayer_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 630
+        width: 143
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3ff6b55a4d94614d84c2ddee805fc0b
+      internalID: -1047254477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DamageLayer_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 525
+        width: 143
+        height: 105
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11937aa064f91b641a18ebb69d9a9d35
+      internalID: -1121615169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DamageLayer_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 420
+        width: 143
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e3cde24ee30a4e45b4f12ee3ebbf085
+      internalID: -1899720739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DamageLayer_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 314
+        width: 143
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 722df2087cb6b094cb068cf0cb5cd360
+      internalID: 248562636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DamageLayer_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 210
+        width: 143
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e57f34a3d3a57c04e83b931225a4c673
+      internalID: -800655313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DamageLayer_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 105
+        width: 143
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 287d9bd2f3aef284299090406ba677a8
+      internalID: 2141578465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3be07720ba66504438dbace23ad659b2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      DamageLayer_0: 1480574094
+      DamageLayer_1: -315680644
+      DamageLayer_2: -247802525
+      DamageLayer_3: -1047254477
+      DamageLayer_4: -1121615169
+      DamageLayer_5: -1899720739
+      DamageLayer_6: 248562636
+      DamageLayer_7: -800655313
+      DamageLayer_8: 2141578465
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

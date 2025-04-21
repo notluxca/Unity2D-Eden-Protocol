@@ -1,124 +1,74 @@
-using System.IO.Compression;
+using System;
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
+    public static event Action OnPlayerDeath;
+
     public float life = 6f;
-    public float speed = 5f; // Horizontal movement speed
-    public float thrust = 10f; // Jetpack thrust force
-    public float flyImpulse = 10f; // Jetpack initial Thrust to get off ground
-    public float tiltAmount = 15f; // Max tilt angle
-    public float tiltSpeed = 5f; // Smooth tilt speed
-    public Transform spriteTransform; // Sprite transform
-    public Transform gunFirePoint; // Gun fire point
-    public SpriteRenderer spriteRenderer;
-    public ParticleSystem playerParticleSystem; // Jetpack particle system
-
-
-    private Rigidbody2D rb;
-    private bool isThrustingLastFrame = false; // Track thrust state
+    public float speed = 5f;
+    public float thrust = 10f;
+    public float flyImpulse = 10f;
+    public float tiltAmount = 15f;
+    public float tiltSpeed = 5f;
     public float MaxSpeed = 10f;
 
+    public Transform spriteTransform;
+    public Transform gunFirePoint;
+    public SpriteRenderer spriteRenderer;
+    public ParticleSystem playerParticleSystem;
+
+    public AudioClip damageClip;
 
     public bool Grounded;
+
+    private Rigidbody2D rb;
+    private JetpackController jetpackController;
+    [SerializeField] private AudioSource audioSource;
+    private Color originalColor;
+
+    public object knockbackTimer { get; private set; }
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        // audioSource = GetComponent<AudioSource>();
+        originalColor = spriteRenderer.color;
+
+        jetpackController = new JetpackController(rb, playerParticleSystem, spriteTransform, thrust, tiltAmount, tiltSpeed, speed, MaxSpeed);
     }
 
-    private void Update()
+    void Update()
     {
-        if (Grounded)
+        float moveInput = Input.GetAxis("Horizontal");
+        CorrectSprite(moveInput);
+
+        if (Grounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) rb.AddForce(Vector2.up * flyImpulse, ForceMode2D.Impulse);
+            rb.linearVelocity += Vector2.up * flyImpulse; // usando linearVelocity
         }
     }
 
     void FixedUpdate()
     {
         if (Grounded) GroundMovement();
-        else JetpackMovement();
-    }
-
-    private void CorrectVelocity()
-    {
-        if (rb.linearVelocity.magnitude > MaxSpeed)
-        {
-            rb.linearVelocity = rb.linearVelocity.normalized * MaxSpeed;
-        }
+        else jetpackController.HandleJetpackMovement(Grounded);
     }
 
     private void GroundMovement()
     {
-        // spriteTransform.rotation = Quaternion.Lerp(spriteTransform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * tiltSpeed * 2);
         playerParticleSystem.Stop();
 
-
-        float moveInput = Input.GetAxis("Horizontal"); // A/D or Left/Right Arrow
+        float moveInput = Input.GetAxis("Horizontal");
         CorrectSprite(moveInput);
 
-        // Apply horizontal movement
         rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y);
 
-        // Correct speed if needed
-        CorrectVelocity();
-    }
-
-    private void JetpackMovement()
-    {
-        float moveInput = Input.GetAxis("Horizontal"); // A/D or Left/Right Arrow
-        bool isThrusting = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
-        CorrectSprite(moveInput);
-
-        // Apply horizontal movement
-        rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y);
-
-        // Apply vertical thrust
-        if (isThrusting)
+        if (rb.linearVelocity.magnitude > MaxSpeed)
         {
-            rb.AddForce(Vector2.up * thrust, ForceMode2D.Force);
-            if (!isThrustingLastFrame) // Play only if not already playing
-            {
-                playerParticleSystem.Play();
-
-            }
-        }
-        else
-        {
-            if (isThrustingLastFrame) // Stop only if previously thrusting
-            {
-                playerParticleSystem.Stop();
-
-            }
-        }
-
-        isThrustingLastFrame = isThrusting; // Update thrust state
-
-        // Correct speed if needed
-        CorrectVelocity();
-
-        // Smooth tilt effect based on X velocity
-        float targetRotation = -rb.linearVelocity.x * tiltAmount / speed;
-        if (!Grounded) spriteTransform.rotation = Quaternion.Lerp(spriteTransform.rotation, Quaternion.Euler(0, 0, targetRotation), Time.deltaTime * tiltSpeed);
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        // Debug.Log(other.gameObject.tag);
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            // Debug.Log("Collision detected");
-            Grounded = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            Grounded = false;
+            rb.linearVelocity = rb.linearVelocity.normalized * MaxSpeed;
         }
     }
 
@@ -135,13 +85,52 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            Grounded = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            Grounded = false;
+        }
+    }
+
     public void Damage(float damage, Vector2 position, float knockbackForce)
     {
         life -= damage;
+
+        if (audioSource && damageClip)
+            audioSource.PlayOneShot(damageClip);
+
+        StartCoroutine(FlashRed());
+
+        Vector2 knockbackDirection = (Vector2)transform.position - position;
+        knockbackDirection.Normalize();
+
+        if (rb != null)
+        {
+            Debug.Log("Knockback applied");
+            rb.linearVelocity = Vector2.zero;
+            rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+        }
+
         if (life <= 0)
         {
+            OnPlayerDeath?.Invoke();
             Destroy(gameObject);
         }
     }
-}
 
+    private IEnumerator FlashRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.2f);
+        spriteRenderer.color = originalColor;
+    }
+}
