@@ -124,7 +124,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Enemy5
     originalName: 
-    pivot: {x: 0.5, y: -0.14285715}
+    pivot: {x: 0.553514, y: 0.46634176}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 

@@ -13,10 +13,12 @@ public class DamageLayer : MonoBehaviour
         spriteRenderer.sprite = damageLayers[8];
     }
 
-    private void Update()
+# if UNITY_EDITOR 
+    private void OnValidate()
     {
-
+        GetComponent<SpriteRenderer>().sprite = null;
     }
+#endif
 
     private void OnDestroy()
     {
