@@ -10,34 +10,37 @@ public class Projectile : MonoBehaviour
     private Vector3 currentDir;
     private TrailRenderer trailRenderer;
     public LayerMask layerMask = 8;
-    Collider2D collider2D;
-    [SerializeField] SpriteRenderer spriteRenderer;
-    AudioSource audioSource;
+    private Collider2D collider2D;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
     public AudioClip hitClip;
 
     public float knockbackForce;
 
-    private Coroutine lifeCoroutine; // <- referência da corrotina para poder parar depois
+    private Coroutine lifeCoroutine;
+
+    [Header("Settings")]
+    [SerializeField] private float rotationOffset = 90f; // <-- Offset para ajustar sprite que olha pra baixo
 
     private void Awake()
     {
         trailRenderer = GetComponent<TrailRenderer>();
         particleSystem = GetComponentInChildren<ParticleSystem>();
         collider2D = GetComponent<Collider2D>();
-        // spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
     }
 
     public void Init(Vector3 direction)
     {
-        currentDir = direction;
+        currentDir = direction.normalized;
         active = true;
 
         particleSystem.Clear();
         trailRenderer.Clear();
         collider2D.enabled = true;
         spriteRenderer.enabled = true;
-        spriteRenderer.gameObject.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y + 45, direction.x) * Mathf.Rad2Deg);
+
+        UpdateRotation(); // Ajusta a rotação do sprite corretamente
 
         if (lifeCoroutine != null)
             StopCoroutine(lifeCoroutine);
@@ -64,17 +67,17 @@ public class Projectile : MonoBehaviour
 
     private void MoveToDirection()
     {
-        transform.Translate(currentDir * speed * Time.deltaTime);
+        transform.Translate(currentDir * speed * Time.deltaTime, Space.World);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!active) return;
+
         if (other.gameObject.CompareTag("Dome"))
         {
             currentDir = -currentDir;
-            // currentDir.y *= Random.Range(-0.1f, 0.1f); random margin slow down
-            // Debug.Log("Hit dome");
+            UpdateRotation(); // Atualiza rotação ao inverter direção
             return;
         }
 
@@ -87,7 +90,6 @@ public class Projectile : MonoBehaviour
             damageable.Damage(ProjectileDamage, transform.position, knockbackForce);
         }
 
-
         active = false;
         audioSource.PlayOneShot(hitClip);
         collider2D.enabled = false;
@@ -95,7 +97,7 @@ public class Projectile : MonoBehaviour
         particleSystem.Play();
 
         if (lifeCoroutine != null)
-            StopCoroutine(lifeCoroutine); // <- interrompe o timer de vida se colidiu
+            StopCoroutine(lifeCoroutine);
 
         StartCoroutine(ReturnAfterParticle());
     }
@@ -104,5 +106,11 @@ public class Projectile : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         ProjectilePool.Instance.ReturnToPool(gameObject);
+    }
+
+    private void UpdateRotation()
+    {
+        float angle = Mathf.Atan2(currentDir.y, currentDir.x) * Mathf.Rad2Deg;
+        spriteRenderer.transform.rotation = Quaternion.Euler(0f, 0f, angle + rotationOffset);
     }
 }
