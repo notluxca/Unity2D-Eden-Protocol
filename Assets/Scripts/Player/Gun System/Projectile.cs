@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     private TrailRenderer trailRenderer;
     public LayerMask layerMask = 8;
     Collider2D collider2D;
-    SpriteRenderer spriteRenderer;
+    [SerializeField] SpriteRenderer spriteRenderer;
     AudioSource audioSource;
     public AudioClip hitClip;
 
@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
         trailRenderer = GetComponent<TrailRenderer>();
         particleSystem = GetComponentInChildren<ParticleSystem>();
         collider2D = GetComponent<Collider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        // spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -37,6 +37,7 @@ public class Projectile : MonoBehaviour
         trailRenderer.Clear();
         collider2D.enabled = true;
         spriteRenderer.enabled = true;
+        spriteRenderer.gameObject.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y + 45, direction.x) * Mathf.Rad2Deg);
 
         if (lifeCoroutine != null)
             StopCoroutine(lifeCoroutine);
@@ -69,6 +70,13 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!active) return;
+        if (other.gameObject.CompareTag("Dome"))
+        {
+            currentDir = -currentDir;
+            // currentDir.y *= Random.Range(-0.1f, 0.1f); random margin slow down
+            // Debug.Log("Hit dome");
+            return;
+        }
 
         if ((layerMask.value & (1 << other.gameObject.layer)) == 0)
             return;

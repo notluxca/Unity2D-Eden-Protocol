@@ -124,7 +124,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Dome
     originalName: 
-    pivot: {x: 0.49647892, y: 0.00952381}
+    pivot: {x: 0.440625, y: 0.00952381}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -132,7 +132,7 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 142
+      width: 160
       height: 105
     spriteID: eccb1b77e6c710741a04eb0cd8757add
     spriteBone: []
@@ -158,7 +158,7 @@ ScriptedImporter:
       cellRect:
         x: 1
         y: -1
-        width: 142
+        width: 160
         height: 105
       spriteId: eccb1b77e6c710741a04eb0cd8757add
     linkedCells: []
