@@ -8,12 +8,12 @@ public class EnemyDamageHandler : MonoBehaviour
     private InsectEnemy enemy;
     private Color originalColor;
 
-    public EnemyDamageHandler(Rigidbody2D rb, SpriteRenderer renderer, InsectEnemy enemy)
+    private void Awake()
     {
-        this.rb = rb;
-        this.spriteRenderer = renderer;
-        this.enemy = enemy;
-        this.originalColor = spriteRenderer.color;
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        enemy = GetComponent<InsectEnemy>();
+        originalColor = spriteRenderer.color;
     }
 
     public void ApplyDamage(float damage, Vector2 hitPosition, float knockbackForce)

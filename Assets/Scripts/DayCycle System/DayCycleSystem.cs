@@ -39,14 +39,14 @@ public class DayCycleSystem : MonoBehaviour
         skyAnimator.Play(dayCycle, 0, 0f);
         domeEnterTrigger.SetActive(true);
 
-        Debug.Log("☀️ Dia começou");
+        // Debug.Log("Dia começou");
     }
 
     public void ProceedToNight()
     {
         if (!isInDay)
         {
-            Debug.LogWarning("⚠️ Já é noite.");
+            // Debug.LogWarning(" Já é noite.");
             return;
         }
 
@@ -57,7 +57,7 @@ public class DayCycleSystem : MonoBehaviour
     {
         isInDay = false;
         domeEnterTrigger.SetActive(false);
-        Debug.Log("🌇 Transição para noite...");
+        // Debug.Log("Transição para noite...");
 
         skyAnimator.speed = 1f;
         skyAnimator.Play(dayEndName, 0, 0f);
@@ -74,7 +74,7 @@ public class DayCycleSystem : MonoBehaviour
         AnimationClip nightClip = GetAnimationClipByName(nightCycleName);
         if (nightClip == null)
         {
-            Debug.LogError("❌ Animação NightCycle não encontrada!");
+            // Debug.LogError("Animação NightCycle não encontrada!");
             return;
         }
 
@@ -83,7 +83,7 @@ public class DayCycleSystem : MonoBehaviour
         skyAnimator.Play(nightCycleName, 0, 0f);
 
         isNight = true;
-        Debug.Log("🌙 Noite começou");
+        // Debug.Log("Noite começou");
 
         OnNightStart?.Invoke();
         StartCoroutine(NightRoutine());
@@ -100,7 +100,7 @@ public class DayCycleSystem : MonoBehaviour
         if (!isNight) return;
 
         isNight = false;
-        Debug.Log("🌤️ Noite terminou");
+        // Debug.Log("Noite terminou");
         OnNightEnd?.Invoke();
     }
 

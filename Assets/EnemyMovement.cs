@@ -5,10 +5,10 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyMovement : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
-    private InsectEnemy insectEnemy;
-    private NavMeshAgent agent;
-    private Rigidbody2D rb;
+    public SpriteRenderer spriteRenderer;
+    public InsectEnemy insectEnemy;
+    public NavMeshAgent agent;
+    public Rigidbody2D rb;
 
     private float knockbackTimer = 0f;
     private const float knockbackDuration = 0.2f;
@@ -20,14 +20,12 @@ public class EnemyMovement : MonoBehaviour
     private float attackRange = 2f;
     private float attackForce = 3f;
 
-    public EnemyMovement(SpriteRenderer renderer, InsectEnemy enemy)
+    private void Start()
     {
-        this.spriteRenderer = renderer;
-        this.insectEnemy = enemy;
-        this.agent = enemy.GetComponent<NavMeshAgent>();
-        this.rb = enemy.GetComponent<Rigidbody2D>();
-
         SetupNavMeshAgentFor2D();
+        // insectEnemy = GetComponent<InsectEnemy>();
+        // agent = GetComponent<NavMeshAgent>();
+        // rb = GetComponent<Rigidbody2D>();
     }
 
     private void SetupNavMeshAgentFor2D()

@@ -22,9 +22,12 @@ public class InsectEnemy : MonoBehaviour, IDamageable
             target = player != null ? player.transform : GameObject.FindWithTag("Dome").transform;
         }
 
-        movement = new EnemyMovement(GetComponent<SpriteRenderer>(), this);
-        damageHandler = new EnemyDamageHandler(GetComponent<Rigidbody2D>(), GetComponent<SpriteRenderer>(), this);
 
+        movement = GetComponent<EnemyMovement>();
+        damageHandler = GetComponent<EnemyDamageHandler>();
+        // movement = new EnemyMovement(GetComponent<SpriteRenderer>(), this);
+
+        // damageHandler = new EnemyDamageHandler(GetComponent<Rigidbody2D>(), GetComponent<SpriteRenderer>(), this);
         PlayerController.OnPlayerDeath += OnPlayerDeath;
     }
 

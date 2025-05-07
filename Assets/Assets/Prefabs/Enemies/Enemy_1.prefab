@@ -125,6 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a7cd24e6b0c934da7b08b3fe8c894d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2846738995594888746}
+  insectEnemy: {fileID: 9145821514187356997}
+  agent: {fileID: 8652722839278997696}
+  rb: {fileID: 5681414225999831300}
 --- !u!114 &2770014089697498982
 MonoBehaviour:
   m_ObjectHideFlags: 0

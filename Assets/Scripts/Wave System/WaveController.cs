@@ -26,16 +26,15 @@ public class WaveController : MonoBehaviour
 
     public void StartNextWave()
     {
-        if (waveInProgress || currentWaveIndex + 1 >= waves.Count)
+        if (waveInProgress || currentWaveIndex + 1 >= waves.Count) // Já existe uma wave em andamento ou não há mais waves.
         {
-            Debug.LogWarning("⚠️ Já existe uma wave em andamento ou não há mais waves.");
             return;
         }
 
         currentWaveIndex++;
         var wave = waves[currentWaveIndex];
 
-        Debug.Log($"🌙 Iniciando Wave {currentWaveIndex + 1}: {wave.waveName}");
+        Debug.Log($"Iniciando Wave {currentWaveIndex + 1}: {wave.waveName}");
 
         waveInProgress = true;
         onWaveStart?.Invoke();
@@ -45,7 +44,6 @@ public class WaveController : MonoBehaviour
 
     IEnumerator SpawnWaveRoutine(WaveData wave)
     {
-        Debug.Log("Começando wave");
         float nightDuration = dayCyleSystem.GetNightDuration(); // duração da noite
         float delayBetweenSpawns = nightDuration / wave.enemyCount;
 
@@ -62,7 +60,7 @@ public class WaveController : MonoBehaviour
 
         yield return new WaitUntil(() => aliveEnemies.Count == 0);
 
-        Debug.Log($"✅ Wave {currentWaveIndex + 1} finalizada.");
+        Debug.Log($"Wave {currentWaveIndex + 1} concluida.");
 
         waveInProgress = false;
         onWaveEnd?.Invoke();
@@ -71,21 +69,14 @@ public class WaveController : MonoBehaviour
     void SpawnEnemyFromWaveData(WaveData wave, bool shouldDropCoin)
     {
         EnemyData enemyData = GetRandomEnemy(wave.enemies);
-        if (enemyData == null)
-        {
-            Debug.LogWarning("Nenhum inimigo foi selecionado!");
-            return;
-        }
+        if (enemyData == null) return; // Nenhum inimigo foi selecionado
 
         Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
         GameObject enemy = Instantiate(enemyData.enemyPrefab, spawnPoint.position, Quaternion.identity);
-
-
         enemy.GetComponent<InsectEnemy>().ShouldDropLoot = shouldDropCoin;
 
         aliveEnemies.Add(enemy);
-
-        EnemyDeathHandler handler = enemy.AddComponent<EnemyDeathHandler>();
+        EnemyDeathHandler handler = enemy.GetComponent<EnemyDeathHandler>(); //Todo: Mudar para InsectEnemy
         handler.OnDeath += () => aliveEnemies.Remove(enemy);
     }
 
