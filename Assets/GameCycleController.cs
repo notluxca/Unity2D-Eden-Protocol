@@ -12,7 +12,7 @@ public class GameCycleController : MonoBehaviour
 
     private void Start()
     {
-        dayCycleSystem.StartDay(); // Começa de dia
+        dayCycleSystem.PlayDayCycle(); // Começa de dia
         upgradePannel = FindFirstObjectByType<UpgradePannel>();
         SubscribeToEvents();
         ProceedToNextWave();
@@ -22,7 +22,7 @@ public class GameCycleController : MonoBehaviour
     {
         WaveController.onWaveStart += () =>
         {
-            Debug.Log("🔥 Wave " + waveController.currentWave + " iniciada.");
+            Debug.Log("Wave " + waveController.currentWave + " iniciada.");
         };
 
         WaveController.onWaveEnd += () =>
@@ -36,14 +36,18 @@ public class GameCycleController : MonoBehaviour
             nightIsOver = true;
             CheckIfNightIsOver();
         };
+        DayCycleSystem.OnNightStart += () =>
+        {
+            waveController.StartNextWave();
+        };
     }
 
     private void CheckIfNightIsOver()
     {
         if (allEnemiesDead && nightIsOver)
         {
-            Debug.Log("✅ Noite encerrada e wave finalizada.");
-            dayCycleSystem.StartDay();
+            Debug.Log("Noite encerrada e wave finalizada.");
+            dayCycleSystem.PlayDayCycle();
             upgradePannel.OpenUpgradePannel();
             playerInDome = false;
         }
@@ -52,24 +56,15 @@ public class GameCycleController : MonoBehaviour
     [ContextMenu("Proceed To Next Wave")]
     public void ProceedToNextWave()
     {
-        if (dayCycleSystem.IsNight)
-        {
-            Debug.LogWarning("⚠️ Ainda é noite. Aguarde ela terminar.");
-            return;
-        }
+        if (!dayCycleSystem.IsDay) return;
 
-        if (!dayCycleSystem.IsDay)
-        {
-            Debug.LogWarning("⚠️ Ainda não é dia. Espere a transição.");
-            return;
-        }
-
-        Debug.Log("🚀 Iniciando próxima noite e wave");
+        Debug.Log("Iniciando próxima wave...");
         allEnemiesDead = false;
         nightIsOver = false;
 
-        dayCycleSystem.ProceedToNight();
-        waveController.StartNextWave();
+        dayCycleSystem.StartNightCycle();
+        // subscribe to nitght start event
+
     }
 
     public void SetPlayerInDome(bool value)

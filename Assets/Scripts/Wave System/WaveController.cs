@@ -73,7 +73,9 @@ public class WaveController : MonoBehaviour
 
         Transform spawnPoint = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)];
         GameObject enemy = Instantiate(enemyData.enemyPrefab, spawnPoint.position, Quaternion.identity);
-        enemy.GetComponent<InsectEnemy>().ShouldDropLoot = shouldDropCoin;
+        InsectEnemy insectEnemy = enemy.GetComponent<InsectEnemy>();
+        insectEnemy.ShouldDropLoot = shouldDropCoin;
+        insectEnemy.target = UnityEngine.Random.Range(0, 2) == 0 ? GameObject.FindWithTag("Dome").transform : GameObject.FindWithTag("Player").transform; // Decide entre domo e player
 
         aliveEnemies.Add(enemy);
         EnemyDeathHandler handler = enemy.GetComponent<EnemyDeathHandler>(); //Todo: Mudar para InsectEnemy
