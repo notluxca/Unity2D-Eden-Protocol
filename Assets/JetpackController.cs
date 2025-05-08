@@ -2,28 +2,33 @@ using UnityEngine;
 
 public class JetpackController : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private ParticleSystem particleSystem;
-    private Transform spriteTransform;
+    public Rigidbody2D rb;
+    public ParticleSystem particleSystem;
+    public Transform spriteTransform;
+    public PlayerController playerController;
 
-    private float thrust;
+    public float Thrust;
     private float tiltAmount;
     private float tiltSpeed;
-    private float speed;
+    public float Speed;
     private float maxSpeed;
 
     private bool isThrustingLastFrame;
 
-    public JetpackController(Rigidbody2D rb, ParticleSystem particleSystem, Transform spriteTransform, float thrust, float tiltAmount, float tiltSpeed, float speed, float maxSpeed)
+    private void Awake()
     {
-        this.rb = rb;
-        this.particleSystem = particleSystem;
-        this.spriteTransform = spriteTransform;
-        this.thrust = thrust;
-        this.tiltAmount = tiltAmount;
-        this.tiltSpeed = tiltSpeed;
-        this.speed = speed;
-        this.maxSpeed = maxSpeed;
+        //! Results in null on rigidbody
+        // playerController = GetComponent<PlayerController>();
+        // rb = GetComponent<Rigidbody2D>();
+        // particleSystem = GetComponentInChildren<ParticleSystem>();
+        // spriteTransform = GetComponentInChildren<Transform>();
+
+        Thrust = playerController.thrust;
+        tiltAmount = playerController.tiltAmount;
+        tiltSpeed = playerController.tiltSpeed;
+        Speed = playerController.speed;
+        maxSpeed = playerController.MaxSpeed;
+
     }
 
     public void HandleJetpackMovement(bool grounded)
@@ -32,12 +37,12 @@ public class JetpackController : MonoBehaviour
         bool isThrusting = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
 
         // Movimento horizontal
-        rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(moveInput * Speed, rb.linearVelocity.y);
 
         // Impulso vertical
         if (isThrusting)
         {
-            rb.AddForce(Vector2.up * thrust, ForceMode2D.Force);
+            rb.AddForce(Vector2.up * Thrust, ForceMode2D.Force);
             if (!isThrustingLastFrame)
                 particleSystem.Play();
         }
@@ -58,7 +63,7 @@ public class JetpackController : MonoBehaviour
         // Inclinação baseada na velocidade
         if (!grounded)
         {
-            float targetRotation = -rb.linearVelocity.x * tiltAmount / speed;
+            float targetRotation = -rb.linearVelocity.x * tiltAmount / Speed;
             spriteTransform.rotation = Quaternion.Lerp(spriteTransform.rotation, Quaternion.Euler(0, 0, targetRotation), Time.deltaTime * tiltSpeed);
         }
     }

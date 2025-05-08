@@ -110,7 +110,7 @@ MonoBehaviour:
   speed: 2
   variationAmount: 1
   variationSpeed: 5
-  life: 2
+  life: 1
   AttackDamage: 1
   ShouldDropLoot: 0
 --- !u!114 &3377173191233911008

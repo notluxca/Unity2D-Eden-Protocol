@@ -35,9 +35,8 @@ public class PlayerController : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         // audioSource = GetComponent<AudioSource>();
+        jetpackController = GetComponent<JetpackController>();
         originalColor = spriteRenderer.color;
-
-        jetpackController = new JetpackController(rb, playerParticleSystem, spriteTransform, thrust, tiltAmount, tiltSpeed, speed, MaxSpeed);
     }
 
     void Update()

@@ -114,7 +114,7 @@ MonoBehaviour:
     m_Bits: 320
   spriteRenderer: {fileID: 8467706690171769584}
   hitClip: {fileID: 8300000, guid: c5f4038c57b548246bcff3d5c98933aa, type: 3}
-  knockbackForce: 0.2
+  knockbackForce: 5
   rotationOffset: 90
 --- !u!96 &6075063374461957869
 TrailRenderer:

@@ -9,6 +9,7 @@ public class UpgradePannel : MonoBehaviour
 
     private DomeController domeController;
     private PlayerController playerController;
+    private JetpackController jetpackController;
     private GunController gunController;
     private LootController lootController;
     private GameCycleController gameCycleController;
@@ -20,6 +21,7 @@ public class UpgradePannel : MonoBehaviour
         gunController = FindAnyObjectByType<GunController>();
         lootController = FindAnyObjectByType<LootController>();
         gameCycleController = FindAnyObjectByType<GameCycleController>();
+        jetpackController = FindAnyObjectByType<JetpackController>();
     }
 
     private void Start()
@@ -53,8 +55,8 @@ public class UpgradePannel : MonoBehaviour
     {
         if (!lootController.TrySpeendLoot(1)) return; // se a compra falhar retorne
         Upgrade();
-        playerController.thrust += 2f;
-        playerController.speed += 0.4f;
+        jetpackController.Thrust += 0.5f;
+        jetpackController.Speed += 0.2f;
     }
 
     public void UpgradeDomeDurability()

@@ -22,14 +22,8 @@ public class EnemyDamageHandler : MonoBehaviour
         enemy.life -= damage;
         enemy.StartCoroutine(FlashRed());
 
-        Vector2 knockbackDir = (Vector2)enemy.transform.position - hitPosition;
-        knockbackDir.Normalize();
-
-        if (rb != null)
-        {
-            rb.linearVelocity = Vector2.zero;
-            rb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
-        }
+        if (knockbackForce > 0)
+            enemy.StartCoroutine(ApplyKnockback(hitPosition, knockbackForce));
 
         if (enemy.life <= 0)
         {
@@ -50,5 +44,20 @@ public class EnemyDamageHandler : MonoBehaviour
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(0.2f);
         spriteRenderer.color = originalColor;
+    }
+
+    private IEnumerator ApplyKnockback(Vector2 hitPosition, float knockbackForce)
+    {
+        Vector2 knockbackDir = (Vector2)enemy.transform.position - hitPosition;
+        knockbackDir.Normalize();
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+        }
+        yield return new WaitForSeconds(0.1f);
+
+        rb.linearVelocity = Vector2.zero; // reset knockbackForce
     }
 }

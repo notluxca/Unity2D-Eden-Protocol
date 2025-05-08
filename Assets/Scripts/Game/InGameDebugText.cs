@@ -5,6 +5,7 @@ public class InGameDebugText : MonoBehaviour
     private bool ShowDebugText = true;
     private DomeController domeController;
     private PlayerController playerController;
+    private JetpackController jetpackController;
     private WaveController enemySpawner;
     private GunController gunController;
     private LootController lootController;
@@ -18,25 +19,14 @@ public class InGameDebugText : MonoBehaviour
         gunController = FindAnyObjectByType<GunController>();
         enemySpawner = FindAnyObjectByType<WaveController>();
         lootController = FindAnyObjectByType<LootController>();
+        jetpackController = FindAnyObjectByType<JetpackController>();
     }
-
-    private void Update()
-    {
-        UpdateInfo();
-    }
-
-    private void UpdateInfo()
-    {
-        o2Level = domeController.currentOxygen;
-        JetPackThrust = playerController.thrust;
-    }
-
 
     void OnGUI()
     {
         if (!ShowDebugText) return;
         // GUI.Label(new Rect(10, 10, 300, 20), $"O2 Level: {o2Level.ToString()}");
-        GUI.Label(new Rect(10, 25, 300, 20), $"Jetpack Thrust Level: {JetPackThrust.ToString()}");
+        GUI.Label(new Rect(10, 25, 300, 20), $"Jetpack Thrust Level: {jetpackController.Thrust}");
         GUI.Label(new Rect(10, 40, 300, 20), $"Player Life: {playerController.life.ToString()}");
         GUI.Label(new Rect(10, 55, 300, 20), $"Current Loot: {lootController.currentLoot}");
         // GUI.Label(new Rect(10, 55, 300, 20), $"CurrentWave: {enemySpawner.currentWaveName}");

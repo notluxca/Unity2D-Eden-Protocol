@@ -1059,71 +1059,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444342549}
   m_CullTransparentMesh: 1
---- !u!1001 &511955184
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5201139479286822923, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
-      propertyPath: m_Name
-      value: Loot
-      objectReference: {fileID: 0}
-    - target: {fileID: 5796256256624685884, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
-      propertyPath: m_Size.x
-      value: 1.43
-      objectReference: {fileID: 0}
-    - target: {fileID: 5796256256624685884, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
-      propertyPath: m_Size.y
-      value: 2.74
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.4015427
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.728784
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
 --- !u!1 &517477053
 GameObject:
   m_ObjectHideFlags: 0
@@ -3841,7 +3776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b191428d44c9745948183d5794168c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 6
+  life: 10
   speed: 2.6
   thrust: 10.6
   flyImpulse: 1.8
@@ -4171,6 +4106,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09694b8ec8597bc449c98414524373d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 1615753267}
+  particleSystem: {fileID: 1842666890}
+  spriteTransform: {fileID: 1456325795}
+  playerController: {fileID: 1615753262}
+  Thrust: 0
+  Speed: 0
 --- !u!70 &1615753273
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -10054,29 +9995,27 @@ MonoBehaviour:
   waves:
   - waveName: Wave 1
     spawnDelay: 0.2
-    enemyCount: 9
+    enemyCount: 15
     enemies:
     - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
       spawnChance: 1
   - waveName: Wave 2
     spawnDelay: 0.2
-    enemyCount: 8
+    enemyCount: 20
     enemies:
     - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
       spawnChance: 0.829
-    - enemyData: {fileID: 11400000, guid: f7834972705ab1f4ca701763c74b5fcb, type: 2}
-      spawnChance: 0.253
   - waveName: Wave 3
     spawnDelay: 0.2
-    enemyCount: 13
+    enemyCount: 25
     enemies:
     - enemyData: {fileID: 11400000, guid: f7834972705ab1f4ca701763c74b5fcb, type: 2}
-      spawnChance: 0.709
+      spawnChance: 0.298
     - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
       spawnChance: 0.949
   - waveName: Wave 4
     spawnDelay: 0.2
-    enemyCount: 13
+    enemyCount: 22
     enemies:
     - enemyData: {fileID: 11400000, guid: f7834972705ab1f4ca701763c74b5fcb, type: 2}
       spawnChance: 0.241
@@ -10086,7 +10025,7 @@ MonoBehaviour:
       spawnChance: 1
   - waveName: Wave 5
     spawnDelay: 0.2
-    enemyCount: 13
+    enemyCount: 23
     enemies:
     - enemyData: {fileID: 11400000, guid: fe641df1e4b14be41b919ab2b58bfadd, type: 2}
       spawnChance: 0.582
@@ -10094,7 +10033,7 @@ MonoBehaviour:
       spawnChance: 0.918
   - waveName: Wave 6
     spawnDelay: 0.2
-    enemyCount: 8
+    enemyCount: 30
     enemies:
     - enemyData: {fileID: 11400000, guid: f7834972705ab1f4ca701763c74b5fcb, type: 2}
       spawnChance: 0.563
@@ -10102,7 +10041,7 @@ MonoBehaviour:
       spawnChance: 0.918
   - waveName: Wave 7 - Final
     spawnDelay: 0.2
-    enemyCount: 13
+    enemyCount: 33
     enemies:
     - enemyData: {fileID: 11400000, guid: f7834972705ab1f4ca701763c74b5fcb, type: 2}
       spawnChance: 1
@@ -10546,4 +10485,3 @@ SceneRoots:
   - {fileID: 548410397}
   - {fileID: 1634723807}
   - {fileID: 1287574174}
-  - {fileID: 511955184}
