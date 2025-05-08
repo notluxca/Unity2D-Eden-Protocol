@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca6678e5771944c42954abd842139f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootPrefab: {fileID: 5201139479286822923, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
 --- !u!114 &3681558274166321257
 MonoBehaviour:
   m_ObjectHideFlags: 0

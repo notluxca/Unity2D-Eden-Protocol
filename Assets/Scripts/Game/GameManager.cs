@@ -3,16 +3,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     DayCycleSystem dayCycleSystem;
+    public int lootCount = 0;
 
     void Start()
     {
-        dayCycleSystem = FindFirstObjectByType<DayCycleSystem>();
-        // dayCycleSystem.PlayExampleNight();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
     }
+
+
 }

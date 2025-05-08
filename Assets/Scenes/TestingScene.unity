@@ -1021,30 +1021,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 41145091}
-        m_TargetAssemblyTypeName: UpgradePannel, Assembly-CSharp
-        m_MethodName: CloseUpgradePannel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2024715196}
-        m_TargetAssemblyTypeName: GameCycleController, Assembly-CSharp
-        m_MethodName: ProceedToNextWave
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &444342552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1083,6 +1059,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444342549}
   m_CullTransparentMesh: 1
+--- !u!1001 &511955184
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5201139479286822923, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
+      propertyPath: m_Name
+      value: Loot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5796256256624685884, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
+      propertyPath: m_Size.x
+      value: 1.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 5796256256624685884, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
+      propertyPath: m_Size.y
+      value: 2.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.4015427
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.728784
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5927981659336562041, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77859cebdea5ab3409d56b794a7b6057, type: 3}
 --- !u!1 &517477053
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,30 +1747,6 @@ MonoBehaviour:
       - m_Target: {fileID: 41145091}
         m_TargetAssemblyTypeName: UpgradePannel, Assembly-CSharp
         m_MethodName: UpgradePlayerSpeed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 41145091}
-        m_TargetAssemblyTypeName: UpgradePannel, Assembly-CSharp
-        m_MethodName: CloseUpgradePannel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2024715196}
-        m_TargetAssemblyTypeName: GameCycleController, Assembly-CSharp
-        m_MethodName: ProceedToNextWave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3471,7 +3488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialLife: 0
-  currentLife: 8
+  currentLife: 7
   Player: {fileID: 1615753258}
   upgradeMenu: {fileID: 41145091}
   initialOxygen: 0
@@ -3826,11 +3843,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 6
   speed: 2.6
-  thrust: 10.5
+  thrust: 10.6
   flyImpulse: 1.8
   tiltAmount: 15
   tiltSpeed: 5
-  MaxSpeed: 10
+  MaxSpeed: 400
   spriteTransform: {fileID: 1456325795}
   gunFirePoint: {fileID: 629839372}
   spriteRenderer: {fileID: 1456325796}
@@ -3883,7 +3900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd245e9c79a7fc4faa9090cd9e2e76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireRate: 1.2
+  FireRate: 0.8
   bulletSpeed: 140
   gunFirePoint: {fileID: 1332071775}
   bulletPrefab: {fileID: 4013643530971753591, guid: 210ac1f56c793b040b16cc0341ef2c9c, type: 3}
@@ -4202,6 +4219,7 @@ GameObject:
   - component: {fileID: 1626920161}
   - component: {fileID: 1626920160}
   - component: {fileID: 1626920159}
+  - component: {fileID: 1626920162}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4233,6 +4251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98ae3e377a4b404b9bfba887c688c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootCount: 0
 --- !u!4 &1626920161
 Transform:
   m_ObjectHideFlags: 0
@@ -4248,6 +4267,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1626920162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626920158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 663e4ea450d4a7640b29b7964ace734a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLoot: 0
 --- !u!1 &1634723806
 GameObject:
   m_ObjectHideFlags: 0
@@ -4403,7 +4435,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Current Oxygen level: 0'
+  m_text: 'Current Loot count: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10022,7 +10054,7 @@ MonoBehaviour:
   waves:
   - waveName: Wave 1
     spawnDelay: 0.2
-    enemyCount: 13
+    enemyCount: 9
     enemies:
     - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
       spawnChance: 1
@@ -10030,40 +10062,44 @@ MonoBehaviour:
     spawnDelay: 0.2
     enemyCount: 8
     enemies:
+    - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
+      spawnChance: 0.829
     - enemyData: {fileID: 11400000, guid: f7834972705ab1f4ca701763c74b5fcb, type: 2}
-      spawnChance: 1
+      spawnChance: 0.253
   - waveName: Wave 3
     spawnDelay: 0.2
     enemyCount: 13
     enemies:
     - enemyData: {fileID: 11400000, guid: f7834972705ab1f4ca701763c74b5fcb, type: 2}
-      spawnChance: 1
+      spawnChance: 0.709
     - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
-      spawnChance: 1
+      spawnChance: 0.949
   - waveName: Wave 4
     spawnDelay: 0.2
     enemyCount: 13
     enemies:
     - enemyData: {fileID: 11400000, guid: f7834972705ab1f4ca701763c74b5fcb, type: 2}
-      spawnChance: 1
+      spawnChance: 0.241
     - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
+      spawnChance: 0.848
+    - enemyData: {fileID: 11400000, guid: ea832d3e86c5882468857f1b298a97fa, type: 2}
       spawnChance: 1
   - waveName: Wave 5
     spawnDelay: 0.2
     enemyCount: 13
     enemies:
+    - enemyData: {fileID: 11400000, guid: fe641df1e4b14be41b919ab2b58bfadd, type: 2}
+      spawnChance: 0.582
     - enemyData: {fileID: 11400000, guid: f7834972705ab1f4ca701763c74b5fcb, type: 2}
-      spawnChance: 1
-    - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
-      spawnChance: 1
+      spawnChance: 0.918
   - waveName: Wave 6
     spawnDelay: 0.2
-    enemyCount: 13
+    enemyCount: 8
     enemies:
     - enemyData: {fileID: 11400000, guid: f7834972705ab1f4ca701763c74b5fcb, type: 2}
-      spawnChance: 1
-    - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
-      spawnChance: 1
+      spawnChance: 0.563
+    - enemyData: {fileID: 11400000, guid: fe641df1e4b14be41b919ab2b58bfadd, type: 2}
+      spawnChance: 0.918
   - waveName: Wave 7 - Final
     spawnDelay: 0.2
     enemyCount: 13
@@ -10071,6 +10107,10 @@ MonoBehaviour:
     - enemyData: {fileID: 11400000, guid: f7834972705ab1f4ca701763c74b5fcb, type: 2}
       spawnChance: 1
     - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
+      spawnChance: 1
+    - enemyData: {fileID: 11400000, guid: fe641df1e4b14be41b919ab2b58bfadd, type: 2}
+      spawnChance: 1
+    - enemyData: {fileID: 11400000, guid: ea832d3e86c5882468857f1b298a97fa, type: 2}
       spawnChance: 1
   spawnPoints:
   - {fileID: 1118811939}
@@ -10230,30 +10270,6 @@ MonoBehaviour:
       - m_Target: {fileID: 41145091}
         m_TargetAssemblyTypeName: UpgradePannel, Assembly-CSharp
         m_MethodName: UpgradeDomeDurability
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 41145091}
-        m_TargetAssemblyTypeName: UpgradePannel, Assembly-CSharp
-        m_MethodName: CloseUpgradePannel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2024715196}
-        m_TargetAssemblyTypeName: GameCycleController, Assembly-CSharp
-        m_MethodName: ProceedToNextWave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10530,3 +10546,4 @@ SceneRoots:
   - {fileID: 548410397}
   - {fileID: 1634723807}
   - {fileID: 1287574174}
+  - {fileID: 511955184}

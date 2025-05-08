@@ -24,7 +24,7 @@ public class DomeController : MonoBehaviour, IDamageable
 
     private void FixedUpdate()
     {
-        if (shouldGenerateOxygen) currentOxygen += O2GenerationRate;
+        // if (shouldGenerateOxygen) currentOxygen += O2GenerationRate;
         // if (Input.GetKeyDown(KeyCode.Space))
         // {
         //     DoDamage();

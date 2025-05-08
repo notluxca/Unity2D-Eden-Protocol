@@ -10,12 +10,16 @@ public class UpgradePannel : MonoBehaviour
     private DomeController domeController;
     private PlayerController playerController;
     private GunController gunController;
+    private LootController lootController;
+    private GameCycleController gameCycleController;
 
     private void Awake()
     {
         domeController = GetComponentInParent<DomeController>();
         playerController = FindAnyObjectByType<PlayerController>();
         gunController = FindAnyObjectByType<GunController>();
+        lootController = FindAnyObjectByType<LootController>();
+        gameCycleController = FindAnyObjectByType<GameCycleController>();
     }
 
     private void Start()
@@ -25,23 +29,19 @@ public class UpgradePannel : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            UpgradeGunFireRate();
-            UpgradePlayerSpeed();
-        }
+        // if (Input.GetKeyDown(KeyCode.J)) // Cheats
+        // {
+        //     UpgradeGunFireRate();
+        //     UpgradePlayerSpeed();
+        // }
     }
 
-
-    [ContextMenu("Open Upgrade Pannel")]
     public void OpenUpgradePannel()
     {
         domeController.SetOxygenGeneration(false);
         UpgradePannelCanvas.SetActive(true);
         if (domeController != null) oxygenText.text = "Current Oxygen Level: " + domeController.currentOxygen.ToString();
     }
-
-    [ContextMenu("Close Upgrade Pannel")]
     public void CloseUpgradePannel()
     {
         UpgradePannelCanvas.SetActive(false);
@@ -51,17 +51,32 @@ public class UpgradePannel : MonoBehaviour
 
     public void UpgradePlayerSpeed()
     {
-        playerController.thrust += 1f;
-        playerController.speed += 0.5f;
+        if (!lootController.TrySpeendLoot(1)) return; // se a compra falhar retorne
+        Upgrade();
+        playerController.thrust += 2f;
+        playerController.speed += 0.4f;
     }
 
     public void UpgradeDomeDurability()
     {
+        if (!lootController.TrySpeendLoot(1)) return; // se a compra falhar retorne
+        Upgrade();
         Debug.Log("Dome durability on");
     }
 
     public void UpgradeGunFireRate()
     {
-        gunController.FireRate += 1f;
+        if (!lootController.TrySpeendLoot(1)) return; // se a compra falhar retorne
+        Upgrade();
+        gunController.FireRate += 0.6f;
+    }
+
+    private void Upgrade()
+    {
+        if (lootController.GetValue() <= 0)
+        {
+            CloseUpgradePannel();
+            gameCycleController.ProceedToNextWave();
+        }
     }
 }

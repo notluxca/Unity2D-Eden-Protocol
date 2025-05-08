@@ -7,6 +7,7 @@ public class EnemyDamageHandler : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private InsectEnemy enemy;
     private Color originalColor;
+    public GameObject lootPrefab;
 
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class EnemyDamageHandler : MonoBehaviour
             if (enemy.ShouldDropLoot)
             {
                 Debug.Log("Dropped loot");
-                // Instantiate(lootPrefab, enemy.transform.position, Quaternion.identity);
+                Object.Instantiate(lootPrefab, enemy.transform.position, Quaternion.identity);
             }
 
             Object.Destroy(enemy.gameObject);
