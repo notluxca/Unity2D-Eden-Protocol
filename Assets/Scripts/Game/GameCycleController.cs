@@ -12,7 +12,7 @@ public class GameCycleController : MonoBehaviour
 
     private void Start()
     {
-        dayCycleSystem.PlayDayCycle(); // Começa de dia
+        // dayCycleSystem.PlayDayCycle(); // Começa de dia
         upgradePannel = FindFirstObjectByType<UpgradePannel>();
         SubscribeToEvents();
         ProceedToNextWave();

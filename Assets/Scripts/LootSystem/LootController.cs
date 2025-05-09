@@ -1,5 +1,3 @@
-using Unity.Android.Types;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class LootController : MonoBehaviour

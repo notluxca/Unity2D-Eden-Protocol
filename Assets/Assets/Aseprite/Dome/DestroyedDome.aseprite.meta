@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1adc4e646ed2a6945aca3095cb84e3d4
+guid: f91d1cabe4aefed429610da1580b85b0
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -122,9 +122,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Dome
+  - name: DestroyedDome
     originalName: 
-    pivot: {x: 0.440625, y: 0.00952381}
+    pivot: {x: 0.49647892, y: 0.011363638}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -132,9 +132,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 160
-      height: 105
-    spriteID: eccb1b77e6c710741a04eb0cd8757add
+      width: 142
+      height: 88
+    spriteID: 0c7a9d113762fce4dbb77da8c9cb28b1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -146,21 +146,21 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1185076405
-    name: Dome
+    guid: 378526594
+    name: DestroyedDome
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Dome
+    - name: DestroyedDome
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 1
         y: -1
-        width: 160
-        height: 105
-      spriteId: eccb1b77e6c710741a04eb0cd8757add
+        width: 142
+        height: 88
+      spriteId: 0c7a9d113762fce4dbb77da8c9cb28b1
     linkedCells: []
     parentIndex: -1
   platformSettings:

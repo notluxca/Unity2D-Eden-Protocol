@@ -50,11 +50,9 @@ public class InsectEnemy : MonoBehaviour, IDamageable
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            var damageable = other.gameObject.GetComponent<IDamageable>();
-            damageable?.Damage(AttackDamage, transform.position, 5);
-        }
+        IDamageable damageable;
+        if (other.gameObject.TryGetComponent<IDamageable>(out damageable))
+            if (damageable != null) damageable?.Damage(AttackDamage, transform.position, 5);
     }
 
     public void Damage(float damage, Vector2 position, float knockbackForce)

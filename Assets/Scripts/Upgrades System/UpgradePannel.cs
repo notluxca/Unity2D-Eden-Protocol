@@ -70,7 +70,7 @@ public class UpgradePannel : MonoBehaviour
     {
         if (!lootController.TrySpeendLoot(1)) return; // se a compra falhar retorne
         Upgrade();
-        gunController.FireRate += 0.6f;
+        gunController.FireRate += 0.9f;
     }
 
     private void Upgrade()

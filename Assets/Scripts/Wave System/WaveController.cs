@@ -48,7 +48,7 @@ public class WaveController : MonoBehaviour
         float delayBetweenSpawns = nightDuration / wave.enemyCount;
 
         // Seleciona quais inimigos vão drop coins
-        WaveDropCount = UnityEngine.Random.Range(1, 4);
+        WaveDropCount = UnityEngine.Random.Range(1, 6);
         HashSet<int> dropCoinIndexes = SelectRandomIndexes(wave.enemyCount, WaveDropCount);
 
         for (int i = 0; i < wave.enemyCount; i++)

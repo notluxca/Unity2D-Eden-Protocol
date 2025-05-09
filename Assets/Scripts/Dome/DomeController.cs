@@ -45,6 +45,7 @@ public class DomeController : MonoBehaviour, IDamageable
     public void Damage(float damage, Vector2 position, float knockbackForce)
     {
         currentLife -= damage;
+        Debug.Log("Domo atacado");
         if (currentLife <= 0)
         {
             // implode or break glass, gameover
@@ -55,6 +56,7 @@ public class DomeController : MonoBehaviour, IDamageable
     [ContextMenu("Test Damage")]
     public void DoDamage()
     {
+        ;
         Damage(1, Vector2.zero, 0);
     }
 
