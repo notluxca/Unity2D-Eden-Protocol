@@ -12,6 +12,7 @@ public class DomeController : MonoBehaviour, IDamageable
 
     AudioSource audioSource;
     [SerializeField] private AudioClip damageClip;
+    [SerializeField] private Collider2D glassCollider;
 
 
     void Start()
@@ -43,7 +44,9 @@ public class DomeController : MonoBehaviour, IDamageable
         currentLife -= damage;
         if (currentLife <= 0)
         {
-            // implode or break glass, gameover
+            canTakeDamage = false;
+            glassCollider.enabled = false;
+
         }
         OndomeHealthChange?.Invoke((int)currentLife);
         canTakeDamage = false;

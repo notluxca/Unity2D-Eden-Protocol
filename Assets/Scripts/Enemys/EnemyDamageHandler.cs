@@ -33,7 +33,7 @@ public class EnemyDamageHandler : MonoBehaviour
                 Object.Instantiate(lootPrefab, enemy.transform.position, Quaternion.identity);
             }
 
-            Object.Destroy(enemy.gameObject);
+            // Object.Destroy(enemy.gameObject);
         }
     }
 

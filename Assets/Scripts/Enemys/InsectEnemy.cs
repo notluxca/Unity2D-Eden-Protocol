@@ -19,6 +19,9 @@ public class InsectEnemy : MonoBehaviour, IDamageable
     private EnemyDamageHandler damageHandler;
     private bool isDead = false;
 
+    private SpriteRenderer spriteRenderer;
+    private Collider2D collider;
+
     private void Start()
     {
         if (target == null)
@@ -30,6 +33,8 @@ public class InsectEnemy : MonoBehaviour, IDamageable
         movement = GetComponent<EnemyMovement>();
         damageHandler = GetComponent<EnemyDamageHandler>();
         audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        collider = GetComponent<Collider2D>();
 
         PlayerController.OnPlayerDeath += OnPlayerDeath;
     }
@@ -46,6 +51,7 @@ public class InsectEnemy : MonoBehaviour, IDamageable
 
     private void Update()
     {
+        if (isDead) return;
         if (target != null)
             movement.MoveTowards(target);
         movement.Tick(target);
@@ -63,22 +69,20 @@ public class InsectEnemy : MonoBehaviour, IDamageable
     public void Damage(float damage, Vector2 position, float knockbackForce)
     {
         if (isDead) return;
-
-        life -= damage;
+        damageHandler.ApplyDamage(damage, position, knockbackForce);
 
         if (life <= 0)
         {
             isDead = true;
-            // PlayRandomClip(damageClips);
-            // Aqui você pode adicionar lógica de morte, animação, loot drop etc.
-            Destroy(gameObject, 0.5f); // Pequeno atraso para o som tocar
+            PlayRandomClip(hurtClips);
+            spriteRenderer.enabled = false;
+            collider.enabled = false;
+            Destroy(gameObject, 1f); // Pequeno atraso para o som tocar
         }
         else
         {
             PlayRandomClip(hurtClips);
         }
-
-        damageHandler.ApplyDamage(damage, position, knockbackForce);
     }
 
     private void PlayRandomClip(AudioClip[] clips)
