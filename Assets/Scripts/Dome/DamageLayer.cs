@@ -2,23 +2,25 @@ using UnityEngine;
 
 public class DamageLayer : MonoBehaviour
 {
+    [SerializeField] private Sprite[] damageLayers; // do menos danificado (índice 0) ao mais danificado (último)
 
-    [SerializeField] private Sprite[] damageLayers; // Max size should be 8. The higher the number the less damaged sprite
-    SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
+    public DomeController domeController;
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        // spriteRenderer = GetComponent<SpriteRenderer>();
         DomeController.OndomeHealthChange += OnDomeHealthChange;
-        spriteRenderer.sprite = damageLayers[8];
+        UpdateDomeSprite((int)domeController.initialLife);
     }
 
-# if UNITY_EDITOR 
-    private void OnValidate()
-    {
-        GetComponent<SpriteRenderer>().sprite = null;
-    }
-#endif
+    // #if UNITY_EDITOR
+    //     private void OnValidate()
+    //     {
+    //         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+    //         if (spriteRenderer != null) spriteRenderer.sprite = null;
+    //     }
+    // #endif
 
     private void OnDestroy()
     {
@@ -27,9 +29,16 @@ public class DamageLayer : MonoBehaviour
 
     private void OnDomeHealthChange(int currentDomeHealth)
     {
-        if (currentDomeHealth > damageLayers.Length || currentDomeHealth < 0) return;
-        spriteRenderer.sprite = damageLayers[currentDomeHealth];
+        UpdateDomeSprite(currentDomeHealth);
     }
 
+    private void UpdateDomeSprite(int currentHealth)
+    {
+        if (damageLayers == null || damageLayers.Length == 0) return;
 
+        // Calcula o índice do sprite com base na proporção da vida
+        float healthRatio = Mathf.Clamp01((float)currentHealth / (int)domeController.initialLife);
+        int spriteIndex = Mathf.RoundToInt((1f - healthRatio) * (damageLayers.Length - 1));
+        spriteRenderer.sprite = damageLayers[spriteIndex];
+    }
 }

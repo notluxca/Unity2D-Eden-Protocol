@@ -40,14 +40,11 @@ public class UpgradePannel : MonoBehaviour
 
     public void OpenUpgradePannel()
     {
-        domeController.SetOxygenGeneration(false);
         UpgradePannelCanvas.SetActive(true);
-        if (domeController != null) oxygenText.text = "Current Oxygen Level: " + domeController.currentOxygen.ToString();
     }
     public void CloseUpgradePannel()
     {
         UpgradePannelCanvas.SetActive(false);
-        domeController.SetOxygenGeneration(true);
     }
 
 

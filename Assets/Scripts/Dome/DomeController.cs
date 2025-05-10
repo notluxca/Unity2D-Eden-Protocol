@@ -1,40 +1,29 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class DomeController : MonoBehaviour, IDamageable
 {
-    public float initialLife = 8;
+    public float initialLife;
     public float currentLife;
+    public float damageCooldown;
     public GameObject Player;
     public UpgradePannel upgradeMenu;
 
+    AudioSource audioSource;
+    [SerializeField] private AudioClip damageClip;
 
-    private bool shouldGenerateOxygen = true;
-    public float initialOxygen = 0f;
-    public float currentOxygen = 0f;
-    public float O2GenerationRate = 0.1f; //default
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        currentLife = initialLife;
+    }
+
+
+    private bool canTakeDamage = true;
 
     public static Action<int> OndomeHealthChange;
-
-
-    public void TakeDamage(float damage)
-    {
-
-    }
-
-    private void FixedUpdate()
-    {
-        // if (shouldGenerateOxygen) currentOxygen += O2GenerationRate;
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     DoDamage();
-        // }
-    }
-
-    public void SetOxygenGeneration(bool value)
-    {
-        shouldGenerateOxygen = value;
-    }
 
     public void EnterDome()
     {
@@ -44,21 +33,21 @@ public class DomeController : MonoBehaviour, IDamageable
 
     public void Damage(float damage, Vector2 position, float knockbackForce)
     {
+        if (canTakeDamage == false) return;
+        StartCoroutine(DamageCoroutine(damage));
+    }
+
+    IEnumerator DamageCoroutine(float damage) // to implement damage cooldown
+    {
+        audioSource.PlayOneShot(damageClip);
         currentLife -= damage;
-        Debug.Log("Domo atacado");
         if (currentLife <= 0)
         {
             // implode or break glass, gameover
         }
         OndomeHealthChange?.Invoke((int)currentLife);
+        canTakeDamage = false;
+        yield return new WaitForSeconds(damageCooldown);
+        canTakeDamage = true;
     }
-
-    [ContextMenu("Test Damage")]
-    public void DoDamage()
-    {
-        ;
-        Damage(1, Vector2.zero, 0);
-    }
-
-
 }

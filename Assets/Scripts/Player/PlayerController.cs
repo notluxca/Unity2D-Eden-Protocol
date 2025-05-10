@@ -14,13 +14,15 @@ public class PlayerController : MonoBehaviour, IDamageable
     public float tiltSpeed = 5f;
     public float MaxSpeed = 10f;
 
+    public float damageCooldown = 1f; // cooldown entre danos
+    private bool canTakeDamage = true;
+
     public Transform spriteTransform;
     public Transform gunFirePoint;
     public SpriteRenderer spriteRenderer;
     public ParticleSystem playerParticleSystem;
 
     public AudioClip damageClip;
-
     public bool Grounded;
 
     private Rigidbody2D rb;
@@ -34,7 +36,6 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        // audioSource = GetComponent<AudioSource>();
         jetpackController = GetComponent<JetpackController>();
         originalColor = spriteRenderer.color;
     }
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         if (Grounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
         {
-            rb.linearVelocity += Vector2.up * flyImpulse; // usando linearVelocity
+            rb.linearVelocity += Vector2.up * flyImpulse;
         }
     }
 
@@ -102,6 +103,14 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void Damage(float damage, Vector2 position, float knockbackForce)
     {
+        if (!canTakeDamage) return;
+        StartCoroutine(DamageCoroutine(damage, position, knockbackForce));
+    }
+
+    private IEnumerator DamageCoroutine(float damage, Vector2 position, float knockbackForce)
+    {
+        canTakeDamage = false;
+
         life -= damage;
 
         if (audioSource && damageClip)
@@ -124,6 +133,9 @@ public class PlayerController : MonoBehaviour, IDamageable
             OnPlayerDeath?.Invoke();
             Destroy(gameObject);
         }
+
+        yield return new WaitForSeconds(damageCooldown);
+        canTakeDamage = true;
     }
 
     private IEnumerator FlashRed()

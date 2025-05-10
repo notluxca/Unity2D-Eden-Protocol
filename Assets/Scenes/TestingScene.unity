@@ -1246,7 +1246,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -1.110223e-16, y: -3.9136114e-27, z: -4.34e-43, w: 1}
-  m_LocalPosition: {x: 0.0642401, y: -0.16808987, z: -10}
+  m_LocalPosition: {x: 0.064240694, y: -1.5625558, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1623,12 +1623,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679786509}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.064241, y: -3.66, z: 0}
-  m_LocalScale: {x: 0.25098288, y: 0.29490486, z: 0.25098288}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.105864756, y: 0.04657221, z: -5.0981593}
+  m_LocalScale: {x: 0.25098288, y: 0.2949048, z: 0.25098282}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1012945781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &679786511
 CircleCollider2D:
@@ -2454,7 +2454,8 @@ Transform:
   m_LocalPosition: {x: 0.17010576, y: 1.4381589, z: 0.046571933}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 679786510}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1079876607
@@ -3574,6 +3575,7 @@ GameObject:
   - component: {fileID: 1531965264}
   - component: {fileID: 1531965267}
   - component: {fileID: 1531965269}
+  - component: {fileID: 1531965270}
   m_Layer: 6
   m_Name: Dome
   m_TagString: Dome
@@ -3692,13 +3694,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8650b756ae63b2a46b8a80e7f969808a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialLife: 0
-  currentLife: 7
+  initialLife: 20
+  currentLife: 0
+  damageCooldown: 1
   Player: {fileID: 1615753258}
   upgradeMenu: {fileID: 41145091}
-  initialOxygen: 0
-  currentOxygen: 0
-  O2GenerationRate: 0.1
+  damageClip: {fileID: 8300000, guid: 195bf60b4f7291046999edf051ba7f2c, type: 3}
 --- !u!114 &1531965269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3712,15 +3713,116 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageLayers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -77263193131466505, guid: 1adc4e646ed2a6945aca3095cb84e3d4, type: 3}
+  - {fileID: -3742395142045806591, guid: 1adc4e646ed2a6945aca3095cb84e3d4, type: 3}
+  - {fileID: -9143468673420451909, guid: 1adc4e646ed2a6945aca3095cb84e3d4, type: 3}
+  - {fileID: 8070244896817650120, guid: 1adc4e646ed2a6945aca3095cb84e3d4, type: 3}
+  - {fileID: 4173772366412796693, guid: 1adc4e646ed2a6945aca3095cb84e3d4, type: 3}
+  - {fileID: -8529304973016810272, guid: 1adc4e646ed2a6945aca3095cb84e3d4, type: 3}
+  - {fileID: -3569718580835358883, guid: 1adc4e646ed2a6945aca3095cb84e3d4, type: 3}
+  - {fileID: -5287547475221317690, guid: 1adc4e646ed2a6945aca3095cb84e3d4, type: 3}
+  - {fileID: -1120291831318731675, guid: 1adc4e646ed2a6945aca3095cb84e3d4, type: 3}
+  - {fileID: -7875767147509060823, guid: 1adc4e646ed2a6945aca3095cb84e3d4, type: 3}
+  - {fileID: 5097605001720366393, guid: 1adc4e646ed2a6945aca3095cb84e3d4, type: 3}
+  spriteRenderer: {fileID: 1554255971}
+  domeController: {fileID: 1531965268}
+--- !u!82 &1531965270
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531965263}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 195bf60b4f7291046999edf051ba7f2c, type: 3}
+  m_Resource: {fileID: 8300000, guid: 195bf60b4f7291046999edf051ba7f2c, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1543961846
 GameObject:
   m_ObjectHideFlags: 0
@@ -3884,7 +3986,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
-  m_Sprite: {fileID: -5287547475221317690, guid: 1adc4e646ed2a6945aca3095cb84e3d4, type: 3}
+  m_Sprite: {fileID: -8529304973016810272, guid: 1adc4e646ed2a6945aca3095cb84e3d4, type: 3}
   m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10716,12 +10818,11 @@ SceneRoots:
   - {fileID: 1433740805}
   - {fileID: 1594849323}
   - {fileID: 1615753263}
-  - {fileID: 1840047566}
-  - {fileID: 679786510}
   - {fileID: 1531965266}
   - {fileID: 1761016363}
-  - {fileID: 1116170841}
   - {fileID: 1012945781}
+  - {fileID: 1840047566}
+  - {fileID: 1116170841}
   - {fileID: 548410397}
   - {fileID: 1634723807}
   - {fileID: 1287574174}
