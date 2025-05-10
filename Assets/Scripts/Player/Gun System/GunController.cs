@@ -16,6 +16,9 @@ public class GunController : MonoBehaviour
 
     private float fireCooldown = 0f;
     private float lastShootSoundTime = -999f;
+    private float precisionOffset = 0.06f;
+
+    public bool CanShoot => fireCooldown <= 0f;
 
     void Update()
     {
@@ -37,7 +40,7 @@ public class GunController : MonoBehaviour
         mouseWorldPosition.z = gunFirePoint.position.z;
 
         Vector2 direction = (mouseWorldPosition - gunFirePoint.position).normalized;
-        direction += new Vector2(0, Random.Range(-0.06f, 0.06f));
+        direction += new Vector2(0, Random.Range(-precisionOffset, precisionOffset));
         direction.Normalize();
 
         GameObject bullet = ProjectilePool.Instance.GetProjectile(gunFirePoint.position, direction);
@@ -49,5 +52,10 @@ public class GunController : MonoBehaviour
             audioSource.PlayOneShot(randomClip);
             lastShootSoundTime = Time.time;
         }
+    }
+
+    public void SetPrecision(float value)
+    {
+        precisionOffset = value;
     }
 }
