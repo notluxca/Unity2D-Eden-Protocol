@@ -47,6 +47,9 @@ public class DomeController : MonoBehaviour, IDamageable
             canTakeDamage = false;
             glassCollider.enabled = false;
 
+            GameManager gameManager = FindAnyObjectByType<GameManager>();
+            gameManager.GameOver();
+
         }
         OndomeHealthChange?.Invoke((int)currentLife);
         canTakeDamage = false;
