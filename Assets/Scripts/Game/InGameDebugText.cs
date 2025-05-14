@@ -31,6 +31,6 @@ public class InGameDebugText : MonoBehaviour
         GUI.Label(new Rect(10, 40, 300, 20), $"Player Life: {playerController.life}");
         GUI.Label(new Rect(10, 55, 300, 20), $"Sucatas: {lootController.currentLoot}");
         GUI.Label(new Rect(10, 70, 300, 20), $"Dome Life: {domeController.currentLife}");
-        // GUI.Label(new Rect(10, 55, 300, 20), $"CurrentWave: {enemySpawner.currentWaveName}");
+        
     }
 }
