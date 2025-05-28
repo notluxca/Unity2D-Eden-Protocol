@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8051188245001074571}
   - component: {fileID: 8503849920691729875}
   - component: {fileID: 5718710840048778137}
+  - component: {fileID: 6845786525317452655}
   m_Layer: 8
   m_Name: Enemy_5
   m_TagString: Enemy
@@ -117,8 +118,6 @@ MonoBehaviour:
   hurtClips:
   - {fileID: 8300000, guid: 582d0524a2950384ab7c9a73f0c7e27c, type: 3}
   - {fileID: 8300000, guid: 04d98ea623fb8914d965a5b6a8e9a920, type: 3}
-  damageClips:
-  - {fileID: 8300000, guid: 43e30994199098a4d9fb4e13604d78f5, type: 3}
   attackClip: {fileID: 8300000, guid: d4f831259bdb4be468a14059a27c8948, type: 3}
 --- !u!114 &3098945395272325443
 MonoBehaviour:
@@ -343,3 +342,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &6845786525317452655
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7160770724474076503}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f56951ddbbaba045b36acda2ca6b521, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
