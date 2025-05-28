@@ -25,6 +25,19 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void Win()
+    {
+        Debug.Log("Win");
+        StartCoroutine(WinSequence());
+    }
+
+    IEnumerator WinSequence()
+    {
+        uiController.FadeIn();
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
 
 
 

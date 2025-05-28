@@ -26,11 +26,11 @@ public class InGameDebugText : MonoBehaviour
     {
         if (!ShowDebugText) return;
         // GUI.Label(new Rect(10, 10, 300, 20), $"O2 Level: {o2Level.ToString()}");
-        GUI.Label(new Rect(10, 10, 300, 20), $"Gun Speed: {gunController.FireRate}");
-        GUI.Label(new Rect(10, 25, 300, 20), $"Jetpack Thrust Level: {jetpackController.Thrust}");
-        GUI.Label(new Rect(10, 40, 300, 20), $"Player Life: {playerController.life}");
-        GUI.Label(new Rect(10, 55, 300, 20), $"Sucatas: {lootController.currentLoot}");
-        GUI.Label(new Rect(10, 70, 300, 20), $"Dome Life: {domeController.currentLife}");
-        
+        GUI.Label(new Rect(150, 10, 300, 20), $"Gun Speed: {gunController.FireRate}");
+        GUI.Label(new Rect(150, 25, 300, 20), $"Jetpack Thrust Level: {jetpackController.Thrust}");
+        GUI.Label(new Rect(150, 40, 300, 20), $"Player Life: {playerController.life}");
+        GUI.Label(new Rect(150, 55, 300, 20), $"Sucatas: {lootController.currentLoot}");
+        GUI.Label(new Rect(150, 70, 300, 20), $"Dome Life: {domeController.currentLife}");
+
     }
 }
