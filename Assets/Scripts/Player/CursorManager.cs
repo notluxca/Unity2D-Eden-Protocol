@@ -24,11 +24,18 @@ public class CursorManager : MonoBehaviour
         Cursor.visible = false; // Desliga a vibilidade do mouse
         gunController = FindAnyObjectByType<GunController>();
         playerTransform = gunController.gameObject.transform;
+        PlayerController.OnPlayerDeath += OnPlayerDeath;
+    }
+
+    private void OnPlayerDeath()
+    {
+        Destroy(this.gameObject);
     }
 
     void Update()
     {
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (!playerTransform) return;
         mouseWorldPosition.z = playerTransform.position.z;
         transform.position = mouseWorldPosition;
         if (gunController.CanShoot)
