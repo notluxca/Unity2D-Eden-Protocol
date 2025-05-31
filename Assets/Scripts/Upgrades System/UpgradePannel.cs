@@ -60,7 +60,7 @@ public class UpgradePannel : MonoBehaviour
     {
         if (!lootController.TrySpeendLoot(1)) return; // se a compra falhar retorne
         Upgrade();
-        Debug.Log("Dome durability on");
+        domeController.RepairDome(5);
     }
 
     public void UpgradeGunFireRate()

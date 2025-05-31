@@ -19,15 +19,26 @@ public class WaveController : MonoBehaviour
     public int currentWave => currentWaveIndex;
     private bool waveInProgress = false;
     private Coroutine currentWaveCoroutine;
+    private GameManager gameManager;
 
     public List<GameObject> aliveEnemies = new List<GameObject>();
 
     public static Action onWaveStart, onWaveEnd;
 
+    private void Start()
+    {
+        gameManager = FindAnyObjectByType<GameManager>();
+    }
+
     public void StartNextWave()
     {
         if (waveInProgress || currentWaveIndex + 1 >= waves.Count) // Já existe uma wave em andamento ou não há mais waves.
         {
+            if (currentWaveIndex + 1 >= waves.Count)
+            {
+                gameManager.Win();
+            }
+
             return;
         }
 

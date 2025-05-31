@@ -38,6 +38,13 @@ public class DomeController : MonoBehaviour, IDamageable
         StartCoroutine(DamageCoroutine(damage));
     }
 
+    public void RepairDome(int value)
+    {
+        currentLife += value;
+        OndomeHealthChange?.Invoke((int)currentLife);
+    }
+
+
     IEnumerator DamageCoroutine(float damage) // to implement damage cooldown
     {
         audioSource.PlayOneShot(damageClip);

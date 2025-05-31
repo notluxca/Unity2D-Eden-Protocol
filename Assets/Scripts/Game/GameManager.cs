@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     {
         uiController.FadeIn();
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
     }
 
     public void Win()
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         uiController.FadeIn();
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(3); // Scene 3 is Victory scene that after return to main menu
     }
 
 
