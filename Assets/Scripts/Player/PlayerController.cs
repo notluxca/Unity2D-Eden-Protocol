@@ -23,14 +23,14 @@ public class PlayerController : MonoBehaviour, IDamageable
     public ParticleSystem playerParticleSystem;
 
     public AudioClip damageClip;
-    public bool Grounded;
+    public bool Grounded = false;
 
     private Rigidbody2D rb;
     private JetpackController jetpackController;
     [SerializeField] private AudioSource audioSource;
     private Color originalColor;
 
-    public object knockbackTimer { get; private set; }
+
 
     void Start()
     {
@@ -45,16 +45,16 @@ public class PlayerController : MonoBehaviour, IDamageable
         float moveInput = Input.GetAxis("Horizontal");
         CorrectSprite(moveInput);
 
-        if (Grounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
-        {
-            rb.linearVelocity += Vector2.up * flyImpulse;
-        }
+        // if (Grounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)))
+        // {
+        //     rb.linearVelocity += Vector2.up * flyImpulse;
+        // }
     }
 
     void FixedUpdate()
     {
-        if (Grounded) GroundMovement();
-        else jetpackController.HandleJetpackMovement(Grounded);
+        //if (Grounded) GroundMovement();
+        jetpackController.HandleJetpackMovement(Grounded);
     }
 
     private void GroundMovement()
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            Grounded = true;
+            //Grounded = true;
         }
     }
 
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            Grounded = false;
+            // Grounded = false;
         }
     }
 
