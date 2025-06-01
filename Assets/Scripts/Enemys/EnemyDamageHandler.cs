@@ -57,7 +57,10 @@ public class EnemyDamageHandler : MonoBehaviour
             rb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
         }
         yield return new WaitForSeconds(0.1f);
-
+        rb.simulated = false;
+        rb.angularVelocity = 0;
         rb.linearVelocity = Vector2.zero; // reset knockbackForce
+        yield return new WaitForSeconds(0.1f);
+        rb.simulated = true; // reset knockbackForce should know work properly
     }
 }

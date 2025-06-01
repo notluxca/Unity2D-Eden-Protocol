@@ -34,11 +34,24 @@ public class DamageLayer : MonoBehaviour
 
     private void UpdateDomeSprite(int currentHealth)
     {
+        // Debug.Log("currentHealth: " + currentHealth);
         if (damageLayers == null || damageLayers.Length == 0) return;
-
-        // Calcula o índice do sprite com base na proporção da vida
-        float healthRatio = Mathf.Clamp01((float)currentHealth / (int)domeController.initialLife);
-        int spriteIndex = Mathf.RoundToInt((1f - healthRatio) * (damageLayers.Length - 1));
-        spriteRenderer.sprite = damageLayers[spriteIndex];
+        if (domeController.currentLife == 1)
+        {
+            spriteRenderer.sprite = damageLayers[9];
+            return;
+        }
+        else if (domeController.currentLife == 0)
+        {
+            spriteRenderer.sprite = damageLayers[10];
+            return;
+        }
+        else
+        {
+            // Calcula o índice do sprite com base na proporção da vida
+            float healthRatio = Mathf.Clamp01((float)currentHealth / (int)domeController.initialLife);
+            int spriteIndex = Mathf.RoundToInt((1f - healthRatio) * (damageLayers.Length - 1));
+            spriteRenderer.sprite = damageLayers[spriteIndex];
+        }
     }
 }

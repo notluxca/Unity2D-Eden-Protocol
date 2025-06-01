@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaveController : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class WaveController : MonoBehaviour
     private bool waveInProgress = false;
     private Coroutine currentWaveCoroutine;
     private GameManager gameManager;
+    private bool PlayerDead = false;
 
     public List<GameObject> aliveEnemies = new List<GameObject>();
 
@@ -27,7 +29,20 @@ public class WaveController : MonoBehaviour
 
     private void Start()
     {
+        PlayerController.OnPlayerDeath += OnPlayerDeath;
         gameManager = FindAnyObjectByType<GameManager>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        gameManager = FindAnyObjectByType<GameManager>();
+        StopAllCoroutines();
+    }
+
+    private void OnPlayerDeath()
+    {
+        PlayerDead = true;
     }
 
     public void StartNextWave()
@@ -91,6 +106,12 @@ public class WaveController : MonoBehaviour
         aliveEnemies.Add(enemy);
         EnemyDeathHandler handler = enemy.GetComponent<EnemyDeathHandler>(); //Todo: Mudar para InsectEnemy
         handler.OnDeath += () => aliveEnemies.Remove(enemy);
+
+        if (PlayerDead)
+        {
+            insectEnemy.AttackDamage = 5;
+            insectEnemy.target = GameObject.FindWithTag("Dome").transform;
+        }
     }
 
     EnemyData GetRandomEnemy(List<EnemySpawnData> enemyPool)

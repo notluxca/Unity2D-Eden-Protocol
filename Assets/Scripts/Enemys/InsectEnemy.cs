@@ -46,6 +46,7 @@ public class InsectEnemy : MonoBehaviour, IDamageable
 
     private void OnPlayerDeath()
     {
+        AttackDamage = 5;
         target = GameObject.FindWithTag("Dome").transform;
     }
 

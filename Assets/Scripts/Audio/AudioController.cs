@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    AudioClip audioClip;
 
-    // Update is called once per frame
-    void Update()
+    public void PlaySound(AudioClip clip)
     {
-        
+        GetComponent<AudioSource>().PlayOneShot(clip);
     }
 }

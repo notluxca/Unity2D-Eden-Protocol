@@ -6,9 +6,30 @@ public class GameManager : MonoBehaviour
 {
     UIController uiController;
 
+
+
     void Awake()
     {
         uiController = FindFirstObjectByType<UIController>();
+    }
+
+    private void OnEnable()
+    {
+        PlayerController.OnPlayerDeath += PlayerDeath;
+    }
+
+    public void PlayerDeath()
+    {
+        StartCoroutine(PlayerDeathSequence());
+    }
+
+    IEnumerator PlayerDeathSequence()
+    {
+        Time.timeScale = 0.7f;
+        yield return new WaitForSeconds(1.5f);
+        Time.timeScale = 1f;
+
+
     }
 
     public void GameOver()

@@ -5621,18 +5621,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waves:
-  - waveName: Wave 1
-    spawnDelay: 0.2
-    enemyCount: 15
-    enemies:
-    - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
-      spawnChance: 1
-  - waveName: Wave 2
-    spawnDelay: 0.2
-    enemyCount: 20
-    enemies:
-    - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
-      spawnChance: 0.829
   - waveName: Wave 3
     spawnDelay: 0.2
     enemyCount: 25
@@ -5641,72 +5629,6 @@ MonoBehaviour:
       spawnChance: 0.298
     - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
       spawnChance: 0.949
-  - waveName: Wave 4
-    spawnDelay: 0.2
-    enemyCount: 22
-    enemies:
-    - enemyData: {fileID: 11400000, guid: f7834972705ab1f4ca701763c74b5fcb, type: 2}
-      spawnChance: 0.241
-    - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
-      spawnChance: 0.633
-    - enemyData: {fileID: 11400000, guid: ea832d3e86c5882468857f1b298a97fa, type: 2}
-      spawnChance: 0.272
-  - waveName: Wave 5
-    spawnDelay: 0.2
-    enemyCount: 23
-    enemies:
-    - enemyData: {fileID: 11400000, guid: 0505fbd8a38052749abbc7c90937d359, type: 2}
-      spawnChance: 0.506
-    - enemyData: {fileID: 11400000, guid: f7834972705ab1f4ca701763c74b5fcb, type: 2}
-      spawnChance: 0.918
-  - waveName: Wave 6
-    spawnDelay: 0.2
-    enemyCount: 30
-    enemies:
-    - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
-      spawnChance: 0.911
-    - enemyData: {fileID: 11400000, guid: fe641df1e4b14be41b919ab2b58bfadd, type: 2}
-      spawnChance: 0.165
-    - enemyData: {fileID: 11400000, guid: ea832d3e86c5882468857f1b298a97fa, type: 2}
-      spawnChance: 0.43
-  - waveName: Wave 7 - Final
-    spawnDelay: 0.2
-    enemyCount: 30
-    enemies:
-    - enemyData: {fileID: 11400000, guid: f7834972705ab1f4ca701763c74b5fcb, type: 2}
-      spawnChance: 0.854
-    - enemyData: {fileID: 11400000, guid: fe641df1e4b14be41b919ab2b58bfadd, type: 2}
-      spawnChance: 0.335
-    - enemyData: {fileID: 11400000, guid: 0505fbd8a38052749abbc7c90937d359, type: 2}
-      spawnChance: 0.424
-    - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
-      spawnChance: 0.424
-  - waveName: Wave 8
-    spawnDelay: 0.2
-    enemyCount: 35
-    enemies:
-    - enemyData: {fileID: 11400000, guid: ea832d3e86c5882468857f1b298a97fa, type: 2}
-      spawnChance: 0.854
-    - enemyData: {fileID: 11400000, guid: fe641df1e4b14be41b919ab2b58bfadd, type: 2}
-      spawnChance: 0.095
-  - waveName: Wave 8
-    spawnDelay: 0.2
-    enemyCount: 35
-    enemies:
-    - enemyData: {fileID: 11400000, guid: ea832d3e86c5882468857f1b298a97fa, type: 2}
-      spawnChance: 0.854
-    - enemyData: {fileID: 11400000, guid: fe641df1e4b14be41b919ab2b58bfadd, type: 2}
-      spawnChance: 0.095
-    - enemyData: {fileID: 11400000, guid: 0505fbd8a38052749abbc7c90937d359, type: 2}
-      spawnChance: 0.095
-  - waveName: Wave 10
-    spawnDelay: 0.2
-    enemyCount: 35
-    enemies:
-    - enemyData: {fileID: 11400000, guid: fe641df1e4b14be41b919ab2b58bfadd, type: 2}
-      spawnChance: 0.386
-    - enemyData: {fileID: 11400000, guid: 7c1646bf8fb607f4585c4dde93b672f4, type: 2}
-      spawnChance: 0.867
   spawnPoints:
   - {fileID: 1118811939}
   - {fileID: 1678249451}
@@ -6161,7 +6083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3743615354837022696, guid: 7509ab48e8b13fe4dbff7b9d5df7e886, type: 3}
       propertyPath: FireRate
-      value: 0.8
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3743615354837022696, guid: 7509ab48e8b13fe4dbff7b9d5df7e886, type: 3}
       propertyPath: fireCooldown
@@ -6170,6 +6092,14 @@ PrefabInstance:
     - target: {fileID: 7686118611991616935, guid: 7509ab48e8b13fe4dbff7b9d5df7e886, type: 3}
       propertyPath: life
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686118611991616935, guid: 7509ab48e8b13fe4dbff7b9d5df7e886, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686118611991616935, guid: 7509ab48e8b13fe4dbff7b9d5df7e886, type: 3}
+      propertyPath: thrust
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7686118611991616935, guid: 7509ab48e8b13fe4dbff7b9d5df7e886, type: 3}
       propertyPath: hitDome

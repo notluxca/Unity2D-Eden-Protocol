@@ -14,6 +14,10 @@ public class UpgradePannel : MonoBehaviour
     private LootController lootController;
     private GameCycleController gameCycleController;
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip openPannelSound;
+    [SerializeField] private AudioClip clickSound;
+
     private void Awake()
     {
         domeController = GetComponentInParent<DomeController>();
@@ -22,6 +26,7 @@ public class UpgradePannel : MonoBehaviour
         lootController = FindAnyObjectByType<LootController>();
         gameCycleController = FindAnyObjectByType<GameCycleController>();
         jetpackController = FindAnyObjectByType<JetpackController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -40,10 +45,12 @@ public class UpgradePannel : MonoBehaviour
 
     public void OpenUpgradePannel()
     {
+        audioSource.PlayOneShot(openPannelSound);
         UpgradePannelCanvas.SetActive(true);
     }
     public void CloseUpgradePannel()
     {
+        audioSource.PlayOneShot(openPannelSound);
         UpgradePannelCanvas.SetActive(false);
     }
 
@@ -72,6 +79,7 @@ public class UpgradePannel : MonoBehaviour
 
     private void Upgrade()
     {
+        audioSource.PlayOneShot(clickSound);
         if (lootController.GetValue() <= 0)
         {
             CloseUpgradePannel();
