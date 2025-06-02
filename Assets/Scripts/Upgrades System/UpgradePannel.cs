@@ -13,6 +13,7 @@ public class UpgradePannel : MonoBehaviour
     private GunController gunController;
     private LootController lootController;
     private GameCycleController gameCycleController;
+    private UIController uiController;
 
     private AudioSource audioSource;
     [SerializeField] private AudioClip openPannelSound;
@@ -27,11 +28,13 @@ public class UpgradePannel : MonoBehaviour
         gameCycleController = FindAnyObjectByType<GameCycleController>();
         jetpackController = FindAnyObjectByType<JetpackController>();
         audioSource = GetComponent<AudioSource>();
+
     }
 
     private void Start()
     {
         UpgradePannelCanvas.SetActive(false);
+        uiController = FindFirstObjectByType<UIController>();
     }
 
     private void Update()
@@ -50,6 +53,8 @@ public class UpgradePannel : MonoBehaviour
     }
     public void CloseUpgradePannel()
     {
+        gunController.ShootAlowed = true;
+        uiController.ShowRetitula();
         audioSource.PlayOneShot(openPannelSound);
         UpgradePannelCanvas.SetActive(false);
     }

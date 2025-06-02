@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PlayerDeathSequence()
     {
-        Time.timeScale = 0.7f;
+        Time.timeScale = 0.5f;
         yield return new WaitForSeconds(1.5f);
         Time.timeScale = 1f;
 

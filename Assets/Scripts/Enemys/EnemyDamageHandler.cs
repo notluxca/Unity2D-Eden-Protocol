@@ -15,6 +15,7 @@ public class EnemyDamageHandler : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemy = GetComponent<InsectEnemy>();
         originalColor = spriteRenderer.color;
+
     }
 
     public void ApplyDamage(float damage, Vector2 hitPosition, float knockbackForce)
@@ -53,11 +54,12 @@ public class EnemyDamageHandler : MonoBehaviour
 
         if (rb != null)
         {
+            rb.simulated = true; // reset knockbackForce should know work properly
             rb.linearVelocity = Vector2.zero;
             rb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
         }
         yield return new WaitForSeconds(0.1f);
-        rb.simulated = false;
+
         rb.angularVelocity = 0;
         rb.linearVelocity = Vector2.zero; // reset knockbackForce
         yield return new WaitForSeconds(0.1f);

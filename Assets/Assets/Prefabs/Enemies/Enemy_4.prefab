@@ -117,8 +117,6 @@ MonoBehaviour:
   hurtClips:
   - {fileID: 8300000, guid: 582d0524a2950384ab7c9a73f0c7e27c, type: 3}
   - {fileID: 8300000, guid: 04d98ea623fb8914d965a5b6a8e9a920, type: 3}
-  damageClips:
-  - {fileID: 8300000, guid: 43e30994199098a4d9fb4e13604d78f5, type: 3}
   attackClip: {fileID: 8300000, guid: d4f831259bdb4be468a14059a27c8948, type: 3}
 --- !u!114 &699876608520543313
 MonoBehaviour:
@@ -255,7 +253,7 @@ AudioSource:
   m_GameObject: {fileID: 7160770724474076503}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5960670228015671916, guid: 9d36581ad6f9d894c9923158b9f31dc7, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1

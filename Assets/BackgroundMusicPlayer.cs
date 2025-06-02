@@ -27,7 +27,7 @@ public class BackgroundMusicPlayer : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
-        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.loop = true;
         audioSource.volume = 0f;
 

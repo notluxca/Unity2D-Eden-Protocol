@@ -27,7 +27,7 @@ public class InGameDebugText : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F7))
         {
-            //  SceneManager.LoadScene(4); //cheat scene 
+            SceneManager.LoadScene(4); //cheat scene 
         }
     }
 

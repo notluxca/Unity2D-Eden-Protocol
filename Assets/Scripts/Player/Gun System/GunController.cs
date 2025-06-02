@@ -18,16 +18,20 @@ public class GunController : MonoBehaviour
     private float lastShootSoundTime = -999f;
     private float precisionOffset = 0.06f;
 
+
+    public bool ShootAlowed = true;
     public bool CanShoot => fireCooldown <= 0f;
+
 
     void Update()
     {
+
         // Atualiza o cooldown de tiro
         if (fireCooldown > 0)
             fireCooldown -= Time.deltaTime;
 
         // Verifica se pode atirar
-        if (Input.GetMouseButton(0) && fireCooldown <= 0f)
+        if (Input.GetMouseButton(0) && fireCooldown <= 0f && ShootAlowed)
         {
             Shoot();
             fireCooldown = 1f / FireRate;

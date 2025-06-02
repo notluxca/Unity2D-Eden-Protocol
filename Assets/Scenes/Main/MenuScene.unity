@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 93136907}
   - component: {fileID: 93136906}
   - component: {fileID: 93136905}
+  - component: {fileID: 93136908}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -399,6 +400,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93136903}
   m_CullTransparentMesh: 1
+--- !u!114 &93136908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93136903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0567f80c0d760e43b13fe09054fe7f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleFactor: 1.1
+  duration: 0.2
+  showMouse: 0
+  hideMouse: 0
+  reticula: {fileID: 0}
+  gunController: {fileID: 0}
 --- !u!1 &94560702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1701,7 +1720,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -3.888774e-18, w: 1}
-  m_LocalPosition: {x: -0.000000692904, y: 4.5664654, z: 1.013959e-15}
+  m_LocalPosition: {x: 2.4670379e-17, y: 3.1719995, z: 7.0432537e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2719,6 +2738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 792799879}
   - component: {fileID: 792799880}
+  - component: {fileID: 792799881}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: Untagged
@@ -2756,6 +2776,103 @@ MonoBehaviour:
   menuMusic: {fileID: 8300000, guid: c5c8f26e10054324a9ce4c606a15eda2, type: 3}
   gameplayMusic: {fileID: 8300000, guid: 4160451e7fa8ba64895b4d05ab7ea723, type: 3}
   fadeDuration: 1.5
+--- !u!82 &792799881
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792799877}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -8428602955387157192, guid: 9d36581ad6f9d894c9923158b9f31dc7, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &798922071
 GameObject:
   m_ObjectHideFlags: 0
@@ -2945,6 +3062,7 @@ GameObject:
   - component: {fileID: 905565300}
   - component: {fileID: 905565299}
   - component: {fileID: 905565298}
+  - component: {fileID: 905565301}
   m_Layer: 5
   m_Name: Creditos
   m_TagString: Untagged
@@ -3066,6 +3184,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905565296}
   m_CullTransparentMesh: 1
+--- !u!114 &905565301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905565296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0567f80c0d760e43b13fe09054fe7f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleFactor: 1.1
+  duration: 0.2
+  showMouse: 0
+  hideMouse: 0
+  reticula: {fileID: 0}
+  gunController: {fileID: 0}
 --- !u!1 &984417672
 GameObject:
   m_ObjectHideFlags: 0
@@ -6133,7 +6269,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3492eab0f99a8e14a936d0163106bc31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PauseButton: {fileID: 0}
+  pauseMenu: {fileID: 0}
   fadeImage: {fileID: 798922073}
+  reticula: {fileID: 0}
+  jetpackAudioSource: {fileID: 0}
 --- !u!1 &1979821065
 GameObject:
   m_ObjectHideFlags: 0
