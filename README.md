@@ -32,11 +32,11 @@
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Engine:** Unity 3D
+- **Engine:** Unity 2D
 - **Linguagem:** C#
-- **Sistema de Física:** Rigidbody2D + Custom Drag/Thrust Controller
+- **Sistema de Física:** Rigidbody2D + Impulse Controllers
 - **Animações:** Unity Animator + Partículas
-- **IA dos Inimigos:** State Machine simples com padrões de ataque e perseguição
+- **IA dos Inimigos:** Navegação via Navmeshs e sistema simples de targeting
 
 ---
 
