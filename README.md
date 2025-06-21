@@ -28,8 +28,6 @@
   <img src="https://github.com/user-attachments/assets/5e41d20b-8d49-4278-96e7-a5e0160c87bc" alt="Gameplay 3" width="300"/>
 </p>
 
-*(Troque os links acima pelos links das suas imagens reais)*
-
 ---
 
 ## 🛠️ Tecnologias Utilizadas
